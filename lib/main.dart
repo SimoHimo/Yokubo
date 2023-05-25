@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter/services.dart';
-import 'package:yokubo/pages/homepage.dart';
+import 'package:yokubo/pages/Dashboard/dashboard.dart';
+
+import 'pages/Dashboard/dashboard_binding.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.blue, // navigation bar color
+    statusBarColor: Colors.white,
     statusBarIconBrightness: Brightness.dark
   ));
   runApp(const MyApp());
@@ -15,14 +19,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Yokubo",
-      theme: ThemeData(),
-      routes: {
-        "Home":(context) => HomePage(),
-      },
-      initialRoute: "Home",
+      theme: ThemeData(useMaterial3: true),
+      initialRoute: "/",
+      getPages: [
+        GetPage(name: "/", page: ()=>DashBoard(),
+        binding: DashboardBinding()
+        ),
+      ],
     );
   }
 }
