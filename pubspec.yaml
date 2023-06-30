@@ -41,6 +41,7 @@ dependencies:
   google_fonts: ^4.0.4
   carousel_slider: ^4.2.1
   custom_radio_grouped_button: ^2.2.0
+  flutter_cart: ^0.0.8
 
 dev_dependencies:
   flutter_test:

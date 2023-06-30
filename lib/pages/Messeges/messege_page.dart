@@ -12,18 +12,36 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Center(
-          child: ElevatedButton(
-              onPressed: () {
-                Get.to(()=>const Test());
-              },
-              child: const Text("Press Here")),
-        )
-      ],
+    List lst =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Notifications",style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+      ),
+      body: Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+        child: ListView.builder(
+            itemCount: lst.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
+                child: Card(
+                  child: ListTile(
+                    visualDensity: VisualDensity(vertical: 4),
+                    onTap: () {
+                      print(lst[index]);
+                    },
+                    title: Text(lst[index].toString()),
+                    // leading: CircleAvatar(
+                    //   backgroundImage:
+                    //   AssetImage('assets/${data[index].avatar}'),
+                    // ),
+                  ),
+                ),
+              );
+            }
+        ),
+
+      ),
     );
+
   }
 }

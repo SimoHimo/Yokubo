@@ -32,31 +32,32 @@ class _ProductPageState extends State<ProductPage> {
     var stars = const Color(0xfffdcb6e);
     var black = const Color(0xff2c3e50);
     var grey = const Color(0xfff6f4f3);
-    var height = (MediaQuery.of(context).size.height) / 100;
-    var width = (MediaQuery.of(context).size.width) / 100;
+    var percentHeight = (MediaQuery.of(context).size.height) / 100; 
+    var PercentWidth = (MediaQuery.of(context).size.width) / 100;
+    
     RxBool isFavorite = false.obs;
-    RxInt counter = 1.obs;
+    RxInt counter = 0.obs;
     return Scaffold(
       body: SafeArea(
         top: true,
         child: SingleChildScrollView(
           child: SizedBox(
-              width: width * 100,
-              height: height * 150,
+              width: 100 * PercentWidth ,
+              height: 150 * percentHeight ,
               child: Stack(
                 alignment: AlignmentDirectional.topCenter,
                 children: [
 
 
                   SizedBox(
-                    height: height * 55,
-                    width: width * 100,
+                    height:55 * percentHeight ,
+                    width: 100 * PercentWidth ,
                     child: const Image(
                         image: AssetImage('assets/images/image-jin.png')),
                   ),
                   Positioned(
                       top: 0,
-                      right: width * 3,
+                      right: 3 * PercentWidth ,
                       child: IconButton(
                           onPressed: () {
                             Get.to(() => const CartPage());
@@ -67,7 +68,7 @@ class _ProductPageState extends State<ProductPage> {
                           ))),
                   Positioned(
                       top: 0,
-                      left: width * 3,
+                      left: 3 * PercentWidth ,
                       child: IconButton(
                           onPressed: () {
                             Get.back();
@@ -77,8 +78,8 @@ class _ProductPageState extends State<ProductPage> {
                             color: black,
                           ))),
                   Positioned(
-                    top: height * 43,
-                    right: width * 3,
+                    top: 43 * percentHeight ,
+                    right: 3 * PercentWidth ,
                     child: Obx(
                       () => IconButton(
                         onPressed: () {
@@ -99,8 +100,8 @@ class _ProductPageState extends State<ProductPage> {
                   Positioned(
                       bottom: 0,
                       child: Container(
-                        height: height * 100,
-                        width: width * 100,
+                        height: 100 * percentHeight ,
+                        width: 100 * PercentWidth,
                         decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.vertical(
@@ -108,10 +109,10 @@ class _ProductPageState extends State<ProductPage> {
                         child: Column(
                           children: [
                             Container(
-                              width: width * 100,
-                              height: height * 13,
+                              width:  100 * PercentWidth ,
+                              height:  13 * percentHeight,
                               padding: EdgeInsets.fromLTRB(
-                                  width * 5, height * 2, width * 5, 0),
+                                  5 * PercentWidth ,2 * percentHeight , 5 * PercentWidth , 0),
                               decoration: const BoxDecoration(
                                 //color: Colors.black12,
                                 borderRadius: BorderRadius.vertical(
@@ -142,8 +143,8 @@ class _ProductPageState extends State<ProductPage> {
                                             fontWeight: FontWeight.w300),
                                       ),
                                       SizedBox(
-                                        height: height * 3,
-                                        width: width * 50,
+                                        height: 3 * percentHeight ,
+                                        width: 50 * PercentWidth,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -194,7 +195,7 @@ class _ProductPageState extends State<ProductPage> {
                                         "\$249",
                                         style: GoogleFonts.poppins(
                                             color: black,
-                                            fontSize: height*3.5,
+                                            fontSize: percentHeight*3.5,
                                             fontWeight: FontWeight.w800),
                                       ),
                                       Row(
@@ -204,24 +205,12 @@ class _ProductPageState extends State<ProductPage> {
 
                                             backgroundColor: black,
 
-                                            child: IconButton(onPressed: (){counter > 1
+                                            child: IconButton(onPressed: (){counter > 0
                                                 ? counter.value--
                                                 : null;}, icon: const Icon(Icons.remove,color: Colors.white,),),
                                           ),
-                                          // InkWell(
-                                          //   onTap: () {
-                                          //     counter > 1
-                                          //         ? counter.value--
-                                          //         : null;
-                                          //   },
-                                          //   child: SizedBox(
-                                          //     height: height * 5,
-                                          //     width: width * 5,
-                                          //     child: const Icon(Icons.remove),
-                                          //   ),
-                                          // ),
                                           SizedBox(
-                                              width: width * 10,
+                                              width: 10 * PercentWidth,
                                               child: Center(
                                                   child: Obx(
                                                 () => Text(
@@ -231,18 +220,6 @@ class _ProductPageState extends State<ProductPage> {
                                                       color: black),
                                                 ),
                                               ))),
-                                          // InkWell(
-                                          //   onTap: () {
-                                          //     counter < 99
-                                          //         ? counter.value++
-                                          //         : null;
-                                          //   },
-                                          //   child: SizedBox(
-                                          //     height: height * 5,
-                                          //     width: width * 5,
-                                          //     child: const Icon(Icons.add),
-                                          //   ),
-                                          // ),
                                           CircleAvatar(
 
 
@@ -261,18 +238,18 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                             Container(
-                              width: width * 100,
-                              height: height * 20,
+                              width: 100 * PercentWidth,
+                              height: 20 * percentHeight,
                               padding:
-                                  EdgeInsets.symmetric(horizontal: width * 5),
+                                  EdgeInsets.symmetric(horizontal: 5 * PercentWidth),
                               //color: Colors.blue,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    height: height * 12,
-                                    width: width * 75,
+                                    height: 12 * percentHeight,
+                                    width: 75 * PercentWidth,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -282,13 +259,13 @@ class _ProductPageState extends State<ProductPage> {
                                         Text("  Size",
                                             style: GoogleFonts.poppins(
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: height * 2.5)),
+                                                fontSize: 2.5* percentHeight)),
                                         CustomRadioButton(
-                                          radius: height * 15,
+                                          radius: 15 * percentHeight,
                                           enableButtonWrap: true,
                                           enableShape: true,
-                                          width: height * 5.7,
-                                          height: height * 5.7,
+                                          width: 5.7 * percentHeight,
+                                          height: 5.7 * percentHeight,
                                           elevation: 0,
                                           selectedColor: black,
                                           unSelectedColor: Colors.white,
@@ -326,10 +303,10 @@ class _ProductPageState extends State<ProductPage> {
 
                                   //Colors
                                   Container(
-                                      height: height * 18,
-                                      width: width * 13,
+                                      height: 18 * percentHeight,
+                                      width: 13 * PercentWidth,
                                       padding: EdgeInsets.symmetric(
-                                          vertical: height),
+                                          vertical: percentHeight),
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius:
@@ -352,7 +329,7 @@ class _ProductPageState extends State<ProductPage> {
                                                 backgroundColor: item.color,
                                                 shape: const CircleBorder(),
                                                 fixedSize: Size(
-                                                    width * 8, width * 8),
+                                                    8 * PercentWidth, 8 * PercentWidth),
                                               ),
                                               onPressed: () {
                                                 setState(() {
@@ -360,7 +337,7 @@ class _ProductPageState extends State<ProductPage> {
                                                 });
                                               },
                                               child: selectedItem == item
-                                                  ? const Icon(Icons.check)
+                                                  ? const Icon(Icons.check,color: Colors.white,)
                                                   : null,
                                             ),
                                         ],
@@ -369,10 +346,10 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                             Container(
-                              width: width * 100,
-                              height: height * 15,
+                              width:   100 * PercentWidth,
+                              height:  15 * percentHeight,
                               padding:
-                                  EdgeInsets.symmetric(horizontal: width * 5),
+                                  EdgeInsets.symmetric(horizontal:  5 * PercentWidth),
                               //color: Colors.blue,
                               child: Column(
                                 mainAxisAlignment:
@@ -401,7 +378,7 @@ class _ProductPageState extends State<ProductPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  height: height * 3,
+                                  height:  3 * percentHeight,
                                 ),
                                 Text(
                                     style: GoogleFonts.poppins(
@@ -410,11 +387,11 @@ class _ProductPageState extends State<ProductPage> {
                                         fontWeight: FontWeight.w600),
                                     "Reviews"),
                                 SizedBox(
-                                  height: height,
+                                  height: percentHeight,
                                 ),
                                 SizedBox(
-                                  width: width * 90,
-                                  height: height * 12,
+                                  width:   90 * PercentWidth,
+                                  height:  12 * percentHeight,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -437,11 +414,11 @@ class _ProductPageState extends State<ProductPage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: height,
+                                  height: percentHeight,
                                 ),
                                 SizedBox(
-                                  width: width * 90,
-                                  height: height * 12,
+                                  width:   90 * PercentWidth,
+                                  height:  12 * percentHeight,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -464,11 +441,11 @@ class _ProductPageState extends State<ProductPage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: height,
+                                  height: percentHeight,
                                 ),
                                 SizedBox(
-                                  width: width * 90,
-                                  height: height * 12,
+                                  width:   90 * PercentWidth,
+                                  height:  12 * percentHeight,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

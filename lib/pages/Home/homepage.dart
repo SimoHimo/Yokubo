@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                             textStyle: TextStyle(
                                 fontSize: height * 3.8,
                                 fontWeight: FontWeight.w800,
-                                color: const Color(0Xffff3838)),
+                                color: black),
                           )),
                       Text("Shop Your Desire",
                           style: GoogleFonts.poppins(
