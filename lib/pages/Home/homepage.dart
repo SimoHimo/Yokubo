@@ -196,8 +196,9 @@ class _HomePageState extends State<HomePage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             color: black.withOpacity(0.7),
+                            image: DecorationImage(image: AssetImage('assets/images/camera.jpg'),fit: BoxFit.fitWidth,)
                           ),
-                          child: Center(child: Text("index: $index")),
+                          //child: Center(child: Text("index: $index")),
                         ),
                       );
                     },
@@ -250,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     return Container(
                       decoration: BoxDecoration(
-                          image: const DecorationImage(image: AssetImage('assets/images/image-jin.png'),fit: BoxFit.fitHeight),
+                          image:  DecorationImage(image: index%2==0?AssetImage('assets/images/image-jin.png'):AssetImage('assets/images/model.jpg'),fit: BoxFit.fitHeight),
                         borderRadius: BorderRadius.circular(25),
                         color: black,
                       ),
@@ -258,11 +259,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Get.to(() => const ProductPage(), arguments: index);
                           },
-                          child: Center(
-                              child: Text(
-                            "index: $index",
-                            style: const TextStyle(color: Colors.white),
-                          ))),
+                      ),
                     );
                   },
                 ), //Gridview

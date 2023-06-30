@@ -15,91 +15,29 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text("Cart",style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold,color: Color(0xff2c3e50)),),),
       body: Container(
-          padding: EdgeInsets.all(32),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "Books",
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(child: SizedBox(),),
-                  IconButton(
-                    onPressed: () {
-                      c.book_increment();
+          //padding: EdgeInsets.all(32),
+          child: ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              physics: BouncingScrollPhysics(),
+              itemCount: 15,
+              itemBuilder: (context,i){
+
+                return ListTile(
+                    visualDensity: VisualDensity(vertical: 4),
+                    onTap: () {
+                      print("");
                     },
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.black45,
+                    leading: const Icon(Icons.list),
+                    trailing: const Text(
+                      "GFG",
+                      style: TextStyle(color: Colors.green, fontSize: 15),
                     ),
-                  ),
-                  Container(
-                    height: 50,
-                    width: 150,
-                    color: Colors.grey,
-                    child: Center(
-                        child: Obx(() => Text("${c.books.toString()}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 30)))),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      c.book_decrement();
-                    },
-                    icon: const Icon(
-                      Icons.remove,
-                      color: Colors.black45,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Pens",
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(child: SizedBox(),),
-                  IconButton(
-                    onPressed: () {
-                      c.pen_increment();
-                    },
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.black45,
-                    ),
-                  ),
-                  Container(
-                    height: 50,
-                    width: 150,
-                    color: Colors.grey,
-                    child: Center(
-                        child: Obx(() => Text("${c.pens.toString()}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 30)))),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      c.pen_decrement();
-                    },
-                    icon: const Icon(
-                      Icons.remove,
-                      color: Colors.black45,
-                    ),
-                  ),
-                ],
-              ),
-              ElevatedButton(onPressed: (){}, child: Text("Pay",style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),))
-            ],
-          )),
-    );
+                    title: Text("List item "));
+
+
+              }),
+    ));
   }
 }

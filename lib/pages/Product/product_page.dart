@@ -29,14 +29,15 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+
     var stars = const Color(0xfffdcb6e);
     var black = const Color(0xff2c3e50);
-    var grey = const Color(0xfff6f4f3);
     var percentHeight = (MediaQuery.of(context).size.height) / 100; 
     var PercentWidth = (MediaQuery.of(context).size.width) / 100;
     
     RxBool isFavorite = false.obs;
-    RxInt counter = 0.obs;
+    //RxInt counter = 0.obs;
+    int index = Get.arguments;
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -52,8 +53,9 @@ class _ProductPageState extends State<ProductPage> {
                   SizedBox(
                     height:55 * percentHeight ,
                     width: 100 * PercentWidth ,
-                    child: const Image(
-                        image: AssetImage('assets/images/image-jin.png')),
+                    child: Image(
+
+                        image: index%2==0?AssetImage('assets/images/image-jin.png'):AssetImage('assets/images/model.jpg'),fit: BoxFit.fill, ),
                   ),
                   Positioned(
                       top: 0,
@@ -198,39 +200,49 @@ class _ProductPageState extends State<ProductPage> {
                                             fontSize: percentHeight*3.5,
                                             fontWeight: FontWeight.w800),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-
-                                          CircleAvatar(
-
-                                            backgroundColor: black,
-
-                                            child: IconButton(onPressed: (){counter > 0
-                                                ? counter.value--
-                                                : null;}, icon: const Icon(Icons.remove,color: Colors.white,),),
-                                          ),
-                                          SizedBox(
-                                              width: 10 * PercentWidth,
-                                              child: Center(
-                                                  child: Obx(
-                                                () => Text(
-                                                  "$counter",
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      color: black),
-                                                ),
-                                              ))),
-                                          CircleAvatar(
+                                      ElevatedButton(onPressed: (){}, child: Text("Add To Cart"))
 
 
-                                            backgroundColor: black,
 
-                                            child: IconButton(onPressed: (){counter <99
-                                                ? counter.value++
-                                                : null;}, icon: const Icon(Icons.add,color: Colors.white,),),
-                                          ),
-                                        ],
-                                      ),
+
+                                      // Row(
+                                      //   children: <Widget>[
+                                      //
+                                      //     CircleAvatar(
+                                      //
+                                      //       backgroundColor: black,
+                                      //
+                                      //       child: IconButton(onPressed: (){counter > 0
+                                      //           ? counter.value--
+                                      //           : null;}, icon: const Icon(Icons.remove,color: Colors.white,),),
+                                      //     ),
+                                      //     SizedBox(
+                                      //         width: 10 * PercentWidth,
+                                      //         child: Center(
+                                      //             child: Obx(
+                                      //                   () => Text(
+                                      //                 "$counter",
+                                      //                 style: TextStyle(
+                                      //                     fontSize: 20,
+                                      //                     color: black),
+                                      //               ),
+                                      //             ))),
+                                      //     CircleAvatar(
+                                      //
+                                      //
+                                      //       backgroundColor: black,
+                                      //
+                                      //       child: IconButton(onPressed: (){counter <99
+                                      //           ? counter.value++
+                                      //           : null;}, icon: const Icon(Icons.add,color: Colors.white,),),
+                                      //     ),
+                                      //   ],
+                                      // ),
+
+
+
+
+
 
                                     ],
                                   )
