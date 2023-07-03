@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yokubo/pages/Home/model_class.dart';
 import 'package:yokubo/pages/Product/product_page.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,15 +17,44 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List<Products>productlist = [];
+
+  Future getProducts() async {
+    var response = await http.get(Uri.https('dummyjson.com', '/products'));
+    var jsonData = jsonDecode(response.body);
+    for (var eachproduct in jsonData['products']) {
+      var product = Products(
+          id: eachproduct['id'],
+          title: eachproduct['title'],
+          description: eachproduct['description'],
+          price: eachproduct['price'],
+          discountPercentage: eachproduct['discountPercentage'],
+          //rating: eachproduct['rating'],
+          stock: eachproduct['stock'],
+          brand: eachproduct['brand'],
+          category: eachproduct['category'],
+          thumbnail: eachproduct['thumbnail'],
+          images: eachproduct['images']);
+      productlist.add(product);
+    }
+    productlist.remove(productlist[2]);
+  }
+
 
   @override
   Widget build(BuildContext context) {
     var darkwhite = const Color(0xfff6f4f3);
     var black = const Color(0xff2c3e50);
-    var height = (MediaQuery.of(context).size.height) / 100;
-    var width = (MediaQuery.of(context).size.width) / 100;
-    List images = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var height = (MediaQuery
+        .of(context)
+        .size
+        .height) / 100;
+    var width = (MediaQuery
+        .of(context)
+        .size
+        .width) / 100;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -36,7 +69,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               //Catagory,Profile
-              Container(
+              SizedBox(
                 height: height * 8,
                 width: width * 90,
                 //color: Colors.white,
@@ -82,25 +115,30 @@ class _HomePageState extends State<HomePage> {
                                 offset: const Offset(0, 40),
                                 onSelected: (Menu item) {},
                                 itemBuilder: (BuildContext context) =>
-                                    <PopupMenuEntry<Menu>>[
-                                      const PopupMenuItem<Menu>(
-                                        value: Menu.itemOne,
-                                        child: Text('Account'),
-                                      ),
-                                      const PopupMenuItem<Menu>(
-                                        value: Menu.itemTwo,
-                                        child: Text('Settings'),
-                                      ),
-                                      const PopupMenuItem<Menu>(
-                                        value: Menu.itemThree,
-                                        child: Text('Switch'),
-                                      ),
-                                    ]))
-                        // FaIcon(FontAwesomeIcons.userAstronaut,size: height*2.8,color: Colors.white,),
-                        ),
+                                <PopupMenuEntry<Menu>>[
+                                  const PopupMenuItem<Menu>(
+                                    value: Menu.itemOne,
+                                    child: Text('Account'),
+                                  ),
+                                  const PopupMenuItem<Menu>(
+                                    value: Menu.itemTwo,
+                                    child: Text('Settings'),
+                                  ),
+                                  const PopupMenuItem<Menu>(
+                                    value: Menu.itemThree,
+                                    child: Text('Switch'),
+                                  ),
+                                ]))
+                      // FaIcon(FontAwesomeIcons.userAstronaut,size: height*2.8,color: Colors.white,),
+                    ),
                   ],
                 ),
               ), //Catagory,Profile
+
+
+
+
+
 
               //Wellcome Text
               Container(
@@ -129,6 +167,11 @@ class _HomePageState extends State<HomePage> {
                     ],
                   )),
 
+
+
+
+
+
               //Search
               Container(
                   height: height * 10,
@@ -147,14 +190,14 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(30),
                             color: darkwhite),
                         child: TextField(
-                          onChanged: (value){
-                            print('First text field: $value');
+                          onChanged: (value) {
                           },
                           decoration: InputDecoration(
                             hintText: "Search Here",
-                            hintStyle: TextStyle(color: Colors.grey),
+                            hintStyle: const TextStyle(color: Colors.grey),
                             prefixIcon: const Icon(Icons.search),
-                            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
                             border: const OutlineInputBorder(
                               borderRadius:
                               BorderRadius.all(Radius.circular(30.0)),
@@ -178,39 +221,60 @@ class _HomePageState extends State<HomePage> {
                     ],
                   )),
 
+
+
+
+
+
               //Carousel Slider
               Container(
                 height: height * 23,
                 width: width * 100,
                 padding:
-                    EdgeInsets.fromLTRB(width * 5, height * 1, 0, height * 1),
-                child: CarouselSlider.builder(
-                    itemCount: images.length,
-                    itemBuilder: (context, index, realIndex) {
-                      return InkWell(
-                        onTap: () {
-                          Get.to(() => const ProductPage(), arguments: index);
-                        },
-                        child: Container(
-                          width: width * 70,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: black.withOpacity(0.7),
-                            image: DecorationImage(image: AssetImage('assets/images/camera.jpg'),fit: BoxFit.fitWidth,)
-                          ),
-                          //child: Center(child: Text("index: $index")),
-                        ),
-                      );
-                    },
-                    options: CarouselOptions(
-                      autoPlay: false,
-                      padEnds: false,
+                EdgeInsets.fromLTRB(width * 5, height * 1, 0, height * 1),
+                child: FutureBuilder(
+                  future: getProducts(),
+                  builder: (context,snapshot){
+                    if(snapshot.connectionState ==ConnectionState.done){
+                      return CarouselSlider.builder(
+                          itemCount: productlist.length,
+                          itemBuilder: (context, index, realIndex) {
+                            return InkWell(
+                              onTap: () {
+                                Get.to(() => const ProductPage(), arguments: index);
+                              },
+                              child: Container(
+                                width: width * 70,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: black.withOpacity(0.7),
+                                      image: DecorationImage(image: NetworkImage("${productlist[index].images[2]}"), fit: BoxFit
+                                          .cover),
+                                ),
+                                //child: Center(child: Text("index: $index")),
+                              ),
+                            );
+                          },
+                          options: CarouselOptions(
+                            autoPlay: false,
+                            padEnds: false,
 
-                    )),
+                          ));
+                    }
+
+                    else{return const Center(child: CircularProgressIndicator());}
+
+                  },
+                )
               ),
 
+
+
+
+
+
               //New Arrival
-              Container(
+              SizedBox(
                 height: height * 5,
                 width: width * 90,
                 child: Row(
@@ -234,35 +298,69 @@ class _HomePageState extends State<HomePage> {
                 ),
               ), //New Arrival
 
-              //Grid
+
+
+
+
+
+              //GridView
               SizedBox(
-                height: height * 141,
-                child: GridView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: width * 5),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: images.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: width * 3,
-                      mainAxisSpacing: width * 3,
-                      childAspectRatio: 0.75),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          image:  DecorationImage(image: index%2==0?AssetImage('assets/images/image-jin.png'):AssetImage('assets/images/model.jpg'),fit: BoxFit.fitHeight),
-                        borderRadius: BorderRadius.circular(25),
-                        color: black,
-                      ),
-                      child: InkWell(
-                          onTap: () {
-                            Get.to(() => const ProductPage(), arguments: index);
+                height: height * 425,
+                child: FutureBuilder(
+                    future: getProducts(),
+                    builder: (context,snapshot){
+                      if(snapshot.connectionState == ConnectionState.done){
+                        return GridView.builder(
+                          padding: EdgeInsets.symmetric(horizontal: width * 5),
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: productlist.length,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: width * 3,
+                              mainAxisSpacing: width * 3,
+                              childAspectRatio: 0.75),
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Get.to(() => const ProductPage(), arguments: index);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(color: black,width: 5),
+                                  color: black,
+                                ),
+                                child: Padding(
+                                  padding:EdgeInsets.symmetric(horizontal:2,vertical: 2),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+
+                                        image: DecorationImage(image: NetworkImage("${productlist[index].images[0]}"), fit: BoxFit
+                                            .cover),
+                                          borderRadius: BorderRadius.circular(18),
+
+                                      ),
+                                      height: 175,
+                                        width: 200,
+
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ),
+                            );
                           },
-                      ),
-                    );
-                  },
-                ), //Gridview
+                        );//Gridview
+                      }
+                      else{return const Center(child:CircularProgressIndicator());}
+                    }
+
+                )
               ) //Bottom
             ],
           ),
@@ -271,25 +369,27 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _drawer() => Drawer(
+  Widget _drawer() =>
+      Drawer(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: _menuItems
-                .map((item) => ListTile(
-                      onTap: () {
-                        _scaffoldKey.currentState?.openEndDrawer();
-                      },
-                      title: Text(item,
-                          style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black45),
-                          )),
-                    ))
+                .map((item) =>
+                ListTile(
+                  onTap: () {
+                    _scaffoldKey.currentState?.openEndDrawer();
+                  },
+                  title: Text(item,
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black45),
+                      )),
+                ))
                 .toList(),
           ),
         ),
@@ -303,3 +403,19 @@ final List<String> _menuItems = <String>[
   'Settings',
   'Sign Out',
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

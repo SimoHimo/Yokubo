@@ -15,10 +15,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Theme(
       data: _isDark ? ThemeData.dark(useMaterial3: true) : ThemeData.light( useMaterial3: true),
       child: Scaffold(
-        appBar: AppBar(
-          //backgroundColor: const Color(0xff2c3e50),
-          title: const Text("Settings"),
-        ),
+        appBar: AppBar(title: const Text("Settings",style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold,),),),
         body: Center(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 400),

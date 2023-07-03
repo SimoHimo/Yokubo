@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:yokubo/pages/Dashboard/dashboard.dart';
+import 'package:get/get.dart';
 
 import 'pages/Dashboard/dashboard_binding.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark
   ));
   runApp(const MyApp());
 }

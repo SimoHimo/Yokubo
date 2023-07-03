@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740523113965",
+    "project_id": "yokubo-9ae1b",
+    "storage_bucket": "yokubo-9ae1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740523113965:android:66401fb5fc34fdf59ebbe4",
+        "android_client_info": {
+          "package_name": "com.simohimo.yokubo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740523113965-ciaujpqsp72dnmcoc1b9qcgbc96p76ei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBebsg56lvtLCjDAKvNLON_aFy1KyEajRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740523113965-ciaujpqsp72dnmcoc1b9qcgbc96p76ei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
