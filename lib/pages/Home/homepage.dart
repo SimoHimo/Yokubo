@@ -336,6 +336,7 @@ class _HomePageState extends State<HomePage> {
                                   padding:EdgeInsets.symmetric(horizontal:2,vertical: 2),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
                                       Container(
                                         decoration: BoxDecoration(
@@ -349,8 +350,15 @@ class _HomePageState extends State<HomePage> {
                                         width: 200,
 
                                       ),
-                                      Text("${productlist[index].title}",style: TextStyle(color: Colors.white,fontSize: 18,overflow:TextOverflow.ellipsis ),),
-                                      Text("price:\$${productlist[index].price}",style: TextStyle(color: Colors.white),)
+                                      Text("${productlist[index].title}",style: TextStyle(color: Colors.white,fontSize: 18,overflow:TextOverflow.ellipsis ,fontWeight: FontWeight.bold),),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("Brand:${productlist[index].brand}",style: TextStyle(color: Colors.white),),
+                                          Text("Price:\$${productlist[index].price}",style: TextStyle(color: Colors.white),),
+
+                                        ],
+                                      )
                                     ],
                                   ),
                                 )
