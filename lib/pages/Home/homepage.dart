@@ -349,6 +349,8 @@ class _HomePageState extends State<HomePage> {
                                         width: 200,
 
                                       ),
+                                      Text(""),
+                                      Text("")
                                     ],
                                   ),
                                 )
