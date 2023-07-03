@@ -349,8 +349,8 @@ class _HomePageState extends State<HomePage> {
                                         width: 200,
 
                                       ),
-                                      Text(""),
-                                      Text("")
+                                      Text("${productlist[index].title}",style: TextStyle(color: Colors.white,fontSize: 18,overflow:TextOverflow.ellipsis ),),
+                                      Text("price:\$${productlist[index].price}",style: TextStyle(color: Colors.white),)
                                     ],
                                   ),
                                 )

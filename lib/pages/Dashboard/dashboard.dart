@@ -77,7 +77,7 @@ class _DashBoardState extends State<DashBoard> {
 
               BottomNavyBarItem(
                 icon: const FaIcon(
-                  FontAwesomeIcons.gears,
+                  FontAwesomeIcons.userAstronaut,
                 ),
                 title: Text('Settings'),
                 activeColor: _activeColor,
