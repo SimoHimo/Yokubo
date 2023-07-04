@@ -66,7 +66,7 @@ class _TestState extends State<Test> {
                     right: width * 3,
                     child: IconButton(
                         onPressed: () {
-                          Get.to(() => const CartPage());
+                          Get.to(() => CartPage());
                         },
                         icon: FaIcon(
                           FontAwesomeIcons.bagShopping,

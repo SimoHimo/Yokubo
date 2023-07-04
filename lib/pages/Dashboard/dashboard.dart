@@ -11,17 +11,19 @@ import '../Profile/profile_page.dart';
 
 
 class DashBoard extends StatefulWidget {
+  const DashBoard({super.key});
+
 
   @override
-  _DashBoardState createState() => _DashBoardState();
+  DashBoardState createState() => DashBoardState();
 }
 
-class _DashBoardState extends State<DashBoard> {
-  int _currentIndex = 0;
+class DashBoardState extends State<DashBoard> {
+  //int _currentIndex = 0;
   var black = const Color(0xff2c3e50);
 
   final _inactiveColor = Colors.grey;
-  final _activeColor = Color(0xff2c3e50);
+  final _activeColor = const Color(0xff2c3e50);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(builder: (controller){
@@ -29,11 +31,11 @@ class _DashBoardState extends State<DashBoard> {
           body: SafeArea(
             child: IndexedStack(
             index: controller.tabIndex,
-              children: const [
-                HomePage(),
+              children:  [
+                const HomePage(),
                 CartPage(),
-                NotificationPage(),
-                ProfilePage(),
+                const NotificationPage(),
+                const ProfilePage(),
               ],
             ),
           ),
@@ -48,7 +50,7 @@ class _DashBoardState extends State<DashBoard> {
             items: <BottomNavyBarItem>[
               BottomNavyBarItem(
                 icon: const FaIcon(FontAwesomeIcons.house,),
-                title: Text('Home'),
+                title: const Text('Home'),
                 activeColor: _activeColor,
                 inactiveColor: _inactiveColor,
                 textAlign: TextAlign.center,
@@ -57,7 +59,7 @@ class _DashBoardState extends State<DashBoard> {
 
               BottomNavyBarItem(
                 icon: const FaIcon(FontAwesomeIcons.cartPlus,),
-                title: Text('Cart'),
+                title: const Text('Cart'),
                 activeColor: _activeColor,
                 inactiveColor: _inactiveColor,
                 textAlign: TextAlign.center,
@@ -66,7 +68,7 @@ class _DashBoardState extends State<DashBoard> {
 
               BottomNavyBarItem(
                 icon: const FaIcon(FontAwesomeIcons.message,),
-                title: Text(
+                title: const Text(
                   'Messeges',
                 ),
                 activeColor: _activeColor,
@@ -79,7 +81,7 @@ class _DashBoardState extends State<DashBoard> {
                 icon: const FaIcon(
                   FontAwesomeIcons.userAstronaut,
                 ),
-                title: Text('Settings'),
+                title: const Text('Settings'),
                 activeColor: _activeColor,
                 inactiveColor: _inactiveColor,
                 textAlign: TextAlign.center,

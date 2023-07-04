@@ -67,7 +67,7 @@ class _NotificationPageState extends State<NotificationPage> {
       appBar: AppBar(
         title: const Text("Notifications",style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold,color: Color(0xff2c3e50)),),
       ),
-      body: Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+      body: Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
         child: ListView.builder(
             itemCount: notifications.length,
             itemBuilder: (context, index) {
@@ -79,13 +79,11 @@ class _NotificationPageState extends State<NotificationPage> {
                 padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
                 child: Card(
                   child: ListTile(
-                    visualDensity: VisualDensity(vertical: 4),
-                    onTap: () {
-                      print(notifications[index]);
-                    },
-                    title: Text(message,style: TextStyle(fontWeight: FontWeight.w600),),
+                    visualDensity: const VisualDensity(vertical: 4),
+                    onTap: () {},
+                    title: Text(message,style: const TextStyle(fontWeight: FontWeight.w600),),
                     subtitle: Text(timestamp.toString()),
-                    leading: notificationId%3==0?Text("messege"):Text("Notification"),
+                    leading: notificationId%3==0?const Text("messege"):const Text("Notification"),
                   ),
                 ),
               );

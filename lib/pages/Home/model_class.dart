@@ -4,7 +4,7 @@ class Products {
   String description;
   int price;
   double discountPercentage;
-  //double rating;
+  double rating;
   int stock;
   String brand;
   String category;
@@ -17,7 +17,7 @@ class Products {
     required this.description,
     required this.price,
     required this.discountPercentage,
-    //required this.rating,
+    required this.rating,
     required this.stock,
     required this.brand,
     required this.category,

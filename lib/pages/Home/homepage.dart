@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<Products>productlist = [];
+  List<Products> productlist = [];
 
   Future getProducts() async {
     var response = await http.get(Uri.https('dummyjson.com', '/products'));
@@ -31,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           description: eachproduct['description'],
           price: eachproduct['price'],
           discountPercentage: eachproduct['discountPercentage'],
-          //rating: eachproduct['rating'],
+          rating: eachproduct['rating'],
           stock: eachproduct['stock'],
           brand: eachproduct['brand'],
           category: eachproduct['category'],
@@ -42,19 +41,12 @@ class _HomePageState extends State<HomePage> {
     productlist.remove(productlist[2]);
   }
 
-
   @override
   Widget build(BuildContext context) {
     var darkwhite = const Color(0xfff6f4f3);
     var black = const Color(0xff2c3e50);
-    var height = (MediaQuery
-        .of(context)
-        .size
-        .height) / 100;
-    var width = (MediaQuery
-        .of(context)
-        .size
-        .width) / 100;
+    var height = (MediaQuery.of(context).size.height) / 100;
+    var width = (MediaQuery.of(context).size.width) / 100;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -115,30 +107,25 @@ class _HomePageState extends State<HomePage> {
                                 offset: const Offset(0, 40),
                                 onSelected: (Menu item) {},
                                 itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<Menu>>[
-                                  const PopupMenuItem<Menu>(
-                                    value: Menu.itemOne,
-                                    child: Text('Account'),
-                                  ),
-                                  const PopupMenuItem<Menu>(
-                                    value: Menu.itemTwo,
-                                    child: Text('Settings'),
-                                  ),
-                                  const PopupMenuItem<Menu>(
-                                    value: Menu.itemThree,
-                                    child: Text('Switch'),
-                                  ),
-                                ]))
-                      // FaIcon(FontAwesomeIcons.userAstronaut,size: height*2.8,color: Colors.white,),
-                    ),
+                                    <PopupMenuEntry<Menu>>[
+                                      const PopupMenuItem<Menu>(
+                                        value: Menu.itemOne,
+                                        child: Text('Account'),
+                                      ),
+                                      const PopupMenuItem<Menu>(
+                                        value: Menu.itemTwo,
+                                        child: Text('Settings'),
+                                      ),
+                                      const PopupMenuItem<Menu>(
+                                        value: Menu.itemThree,
+                                        child: Text('Switch'),
+                                      ),
+                                    ]))
+                        // FaIcon(FontAwesomeIcons.userAstronaut,size: height*2.8,color: Colors.white,),
+                        ),
                   ],
                 ),
               ), //Catagory,Profile
-
-
-
-
-
 
               //Wellcome Text
               Container(
@@ -167,11 +154,6 @@ class _HomePageState extends State<HomePage> {
                     ],
                   )),
 
-
-
-
-
-
               //Search
               Container(
                   height: height * 10,
@@ -190,8 +172,7 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(30),
                             color: darkwhite),
                         child: TextField(
-                          onChanged: (value) {
-                          },
+                          onChanged: (value) {},
                           decoration: InputDecoration(
                             hintText: "Search Here",
                             hintStyle: const TextStyle(color: Colors.grey),
@@ -200,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(20)),
                             border: const OutlineInputBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(30.0)),
+                                  BorderRadius.all(Radius.circular(30.0)),
                             ),
                           ),
                         ),
@@ -221,57 +202,71 @@ class _HomePageState extends State<HomePage> {
                     ],
                   )),
 
-
-
-
-
-
               //Carousel Slider
               Container(
-                height: height * 23,
-                width: width * 100,
-                padding:
-                EdgeInsets.fromLTRB(width * 5, height * 1, 0, height * 1),
-                child: FutureBuilder(
-                  future: getProducts(),
-                  builder: (context,snapshot){
-                    if(snapshot.connectionState ==ConnectionState.done){
-                      return CarouselSlider.builder(
-                          itemCount: productlist.length,
-                          itemBuilder: (context, index, realIndex) {
-                            return InkWell(
-                              onTap: () {
-                                Get.to(() => const ProductPage(), arguments: index);
-                              },
-                              child: Container(
-                                width: width * 70,
-                                decoration: BoxDecoration(
+                  height: height * 23,
+                  width: width * 100,
+                  padding:
+                      EdgeInsets.fromLTRB(width * 5, height * 1, 0, height * 1),
+                  child: FutureBuilder(
+                    future: getProducts(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return CarouselSlider.builder(
+                            itemCount: productlist.length,
+                            itemBuilder: (context, index, realIndex) {
+
+
+
+
+
+
+
+
+
+
+                              return InkWell(
+                                onTap: () {
+                                  Get.to(() => const ProductPage(),
+                                      arguments: productlist[index]);
+                                },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                child: Container(
+                                  width: width * 70,
+                                  decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: black.withOpacity(0.7),
-                                      image: DecorationImage(image: NetworkImage("${productlist[index].images[2]}"), fit: BoxFit
-                                          .cover),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            "${productlist[index].images[2]}"),
+                                        fit: BoxFit.cover),
+                                  ),
+                                  //child: Center(child: Text("index: $index")),
                                 ),
-                                //child: Center(child: Text("index: $index")),
-                              ),
-                            );
-                          },
-                          options: CarouselOptions(
-                            autoPlay: false,
-                            padEnds: false,
-
-                          ));
-                    }
-
-                    else{return const Center(child: CircularProgressIndicator());}
-
-                  },
-                )
-              ),
-
-
-
-
-
+                              );
+                            },
+                            options: CarouselOptions(
+                              autoPlay: false,
+                              padEnds: false,
+                            ));
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  )),
 
               //New Arrival
               SizedBox(
@@ -298,80 +293,108 @@ class _HomePageState extends State<HomePage> {
                 ),
               ), //New Arrival
 
-
-
-
-
-
               //GridView
               SizedBox(
-                height: height * 425,
-                child: FutureBuilder(
-                    future: getProducts(),
-                    builder: (context,snapshot){
-                      if(snapshot.connectionState == ConnectionState.done){
-                        return GridView.builder(
-                          padding: EdgeInsets.symmetric(horizontal: width * 5),
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          itemCount: productlist.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: width * 3,
-                              mainAxisSpacing: width * 3,
-                              childAspectRatio: 0.75),
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                Get.to(() => const ProductPage(), arguments: index);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: black,width: 5),
-                                  color: black,
-                                ),
-                                child: Padding(
-                                  padding:EdgeInsets.symmetric(horizontal:2,vertical: 2),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-
-                                        image: DecorationImage(image: NetworkImage("${productlist[index].images[0]}"), fit: BoxFit
-                                            .cover),
-                                          borderRadius: BorderRadius.circular(18),
-
-                                      ),
-                                      height: 175,
-                                        width: 200,
-
-                                      ),
-                                      Text("${productlist[index].title}",style: TextStyle(color: Colors.white,fontSize: 18,overflow:TextOverflow.ellipsis ,fontWeight: FontWeight.bold),),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  height: height * 425,
+                  child: FutureBuilder(
+                      future: getProducts(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return GridView.builder(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 5),
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: productlist.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: width * 3,
+                                    mainAxisSpacing: width * 3,
+                                    childAspectRatio: 0.70),
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  Get.to(() => const ProductPage(),
+                                    arguments: productlist[index]
+                                  );
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      //border: Border.all(color: black, width: 5),
+                                      color: Colors.white,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 10.0, // soften the shadow
+                                          spreadRadius: 5.0, //extend the shadow
+                                          offset: Offset(
+                                            5.0, // Move to right 10  horizontally
+                                            5.0, // Move to bottom 10 Vertically
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 2, vertical: 2),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          Text("Brand:${productlist[index].brand}",style: TextStyle(color: Colors.white),),
-                                          Text("Price:\$${productlist[index].price}",style: TextStyle(color: Colors.white),),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      "${productlist[index].images[0]}"),
+                                                  fit: BoxFit.cover),
+                                              borderRadius:
+                                                  BorderRadius.circular(18),
+                                            ),
+                                            height: 175,
+                                            width: 200,
+                                          ),
 
+                                           Expanded(
+                                            child:Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.max,
+                                              children:[
+                                                Text(
+                                                  productlist[index].title,
+                                                  style: TextStyle(
+                                                      color: black,
+                                                      fontSize: 18,
+                                                      overflow: TextOverflow.ellipsis,),
+                                                ),
+                                                Text(
+                                                  "\$${productlist[index].price}",
+                                                  style: TextStyle(
+                                                     color: black,
+                                                      fontSize: 20,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                              ],
+
+                                            ),
+                                          )
                                         ],
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ),
-                            );
-                          },
-                        );//Gridview
-                      }
-                      else{return const Center(child:CircularProgressIndicator());}
-                    }
-
-                )
-              ) //Bottom
+                                      ),
+                                    )),
+                              );
+                            },
+                          ); //Gridview
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      })) //Bottom
             ],
           ),
         ),
@@ -379,32 +402,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _drawer() =>
-      Drawer(
+  Widget _drawer() => Drawer(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: _menuItems
-                .map((item) =>
-                ListTile(
-                  onTap: () {
-                    _scaffoldKey.currentState?.openEndDrawer();
-                  },
-                  title: Text(item,
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black45),
-                      )),
-                ))
+                .map((item) => ListTile(
+                      onTap: () {
+                        _scaffoldKey.currentState?.openEndDrawer();
+                      },
+                      title: Text(item,
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black45),
+                          )),
+                    ))
                 .toList(),
           ),
         ),
       );
 }
+
 enum Menu { itemOne, itemTwo, itemThree }
 
 final List<String> _menuItems = <String>[
@@ -413,19 +435,3 @@ final List<String> _menuItems = <String>[
   'Settings',
   'Sign Out',
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,28 +1,41 @@
 import 'package:get/get.dart';
+import 'package:yokubo/pages/Home/model_class.dart';
 
 class CartPageController extends GetxController{
- var books= 0.obs;
- var pens = 0.obs;
 
- book_increment(){
-  books < 99
-      ? books.value++
-      : null;
- }
- book_decrement(){
-  books > 0
-      ? books.value--
-      : null;
-}
 
- pen_increment(){
-  pens < 99
-      ? pens.value++
-      : null;
+ var productsmap = {}.obs;
+
+
+ void addProduct(Products products){
+  if(productsmap.containsKey(products)){
+   productsmap[products] +=1;
+  }
+  else{
+   productsmap[products]=1;
+  }
+  Get.snackbar("Product Added", "You Have Added ${products.title} to the cart",
+   //snackPosition: SnackPosition.TOP,
+   duration: const Duration(seconds: 1),
+
+  );
+
  }
- pen_decrement(){
-  pens > 0
-      ? pens.value--
-      : null;
+
+ void removeProduct(Products products){
+  if(productsmap.containsKey(products)&&productsmap[products]==1){
+   productsmap.removeWhere((key, value) => key ==products);
+  }
+  else{
+   productsmap[products] -=1;
+  }
+  Get.snackbar("Product Removed", "You Have Removed ${products.title} from the cart",
+   //snackPosition: SnackPosition.TOP,
+   duration: const Duration(seconds: 1),
+
+  );
+
  }
+
+
 }

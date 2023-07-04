@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yokubo/pages/Cart/cart_page.dart';
+import 'package:yokubo/pages/Cart/cart_page_controller.dart';
+import 'package:yokubo/pages/Home/model_class.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({
@@ -26,6 +28,7 @@ enum ItemColor {
 
 class _ProductPageState extends State<ProductPage> {
   ItemColor? selectedItem;
+  final cartController = Get.put(CartPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +36,16 @@ class _ProductPageState extends State<ProductPage> {
     var stars = const Color(0xfffdcb6e);
     var black = const Color(0xff2c3e50);
     var percentHeight = (MediaQuery.of(context).size.height) / 100; 
-    var PercentWidth = (MediaQuery.of(context).size.width) / 100;
+    var percentWidth = (MediaQuery.of(context).size.width) / 100;
     
     RxBool isFavorite = false.obs;
-    //RxInt counter = 0.obs;
-    int index = Get.arguments;
+    Products product = Get.arguments;
     return Scaffold(
       body: SafeArea(
         top: true,
         child: SingleChildScrollView(
           child: SizedBox(
-              width: 100 * PercentWidth ,
+              width: 100 * percentWidth ,
               height: 150 * percentHeight ,
               child: Stack(
                 alignment: AlignmentDirectional.topCenter,
@@ -52,17 +54,17 @@ class _ProductPageState extends State<ProductPage> {
 
                   SizedBox(
                     height:55 * percentHeight ,
-                    width: 100 * PercentWidth ,
+                    width: 100 * percentWidth ,
                     child: Image(
 
-                        image: index%2==0?AssetImage('assets/images/image-jin.png'):AssetImage('assets/images/model.jpg'),fit: BoxFit.fill, ),
+                        image: NetworkImage("${product.images[0]}"),fit: BoxFit.contain, ),
                   ),
                   Positioned(
                       top: 0,
-                      right: 3 * PercentWidth ,
+                      right: 3 * percentWidth ,
                       child: IconButton(
                           onPressed: () {
-                            Get.to(() => const CartPage());
+                            Get.to(() => CartPage());
                           },
                           icon: FaIcon(
                             FontAwesomeIcons.bagShopping,
@@ -70,7 +72,7 @@ class _ProductPageState extends State<ProductPage> {
                           ))),
                   Positioned(
                       top: 0,
-                      left: 3 * PercentWidth ,
+                      left: 3 * percentWidth ,
                       child: IconButton(
                           onPressed: () {
                             Get.back();
@@ -81,7 +83,7 @@ class _ProductPageState extends State<ProductPage> {
                           ))),
                   Positioned(
                     top: 43 * percentHeight ,
-                    right: 3 * PercentWidth ,
+                    right: 3 * percentWidth ,
                     child: Obx(
                       () => IconButton(
                         onPressed: () {
@@ -103,7 +105,7 @@ class _ProductPageState extends State<ProductPage> {
                       bottom: 0,
                       child: Container(
                         height: 100 * percentHeight ,
-                        width: 100 * PercentWidth,
+                        width: 100 * percentWidth,
                         decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.vertical(
@@ -111,10 +113,10 @@ class _ProductPageState extends State<ProductPage> {
                         child: Column(
                           children: [
                             Container(
-                              width:  100 * PercentWidth ,
+                              width:  100 * percentWidth ,
                               height:  13 * percentHeight,
                               padding: EdgeInsets.fromLTRB(
-                                  5 * PercentWidth ,2 * percentHeight , 5 * PercentWidth , 0),
+                                  5 * percentWidth ,2 * percentHeight , 5 * percentWidth , 0),
                               decoration: const BoxDecoration(
                                 //color: Colors.black12,
                                 borderRadius: BorderRadius.vertical(
@@ -130,15 +132,20 @@ class _ProductPageState extends State<ProductPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text(
-                                        "Baggy Nike Air",
-                                        style: GoogleFonts.poppins(
-                                            color: black,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold),
+                                      //title
+                                      SizedBox(
+                                        width:percentWidth*60,
+                                        child: Text(
+                                          product.title,
+                                          style: GoogleFonts.poppins(
+                                              textStyle: const TextStyle(overflow:TextOverflow.ellipsis),
+                                              color: black,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
                                       Text(
-                                        "Fur Elise",
+                                        product.category,
                                         style: GoogleFonts.poppins(
                                             color: black,
                                             fontSize: 20,
@@ -146,38 +153,26 @@ class _ProductPageState extends State<ProductPage> {
                                       ),
                                       SizedBox(
                                         height: 3 * percentHeight ,
-                                        width: 50 * PercentWidth,
+                                        width: 50 * percentWidth,
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.start,
                                           children: [
                                             FaIcon(
                                               FontAwesomeIcons.solidStar,
-                                              size: 20,
-                                              color: stars,
-                                            ),
-                                            FaIcon(
-                                              FontAwesomeIcons.solidStar,
-                                              size: 20,
-                                              color: stars,
-                                            ),
-                                            FaIcon(
-                                              FontAwesomeIcons.solidStar,
-                                              size: 20,
-                                              color: stars,
-                                            ),
-                                            FaIcon(
-                                              FontAwesomeIcons.solidStar,
-                                              size: 20,
-                                              color: stars,
-                                            ),
-                                            FaIcon(
-                                              FontAwesomeIcons.solidStar,
-                                              size: 20,
+                                              size: 18,
                                               color: stars,
                                             ),
                                             Text(
-                                              "(69 Reviews)",
+                                              " ${product.rating} Stars ",
+                                              style: GoogleFonts.poppins(
+                                                  color: black,
+                                                  fontSize: 17,
+                                                  fontWeight:
+                                                  FontWeight.bold),
+                                            ),
+                                            Text(
+                                              "(${product.discountPercentage.round()} Reviews)",
                                               style: GoogleFonts.poppins(
                                                   color: black,
                                                   fontSize: 15,
@@ -194,13 +189,13 @@ class _ProductPageState extends State<ProductPage> {
                                         MainAxisAlignment.spaceAround,
                                     children: [
                                       Text(
-                                        "\$249",
+                                        "\$${product.price}",
                                         style: GoogleFonts.poppins(
                                             color: black,
                                             fontSize: percentHeight*3.5,
                                             fontWeight: FontWeight.w800),
                                       ),
-                                      ElevatedButton(onPressed: (){}, child: Text("Add To Cart"))
+                                      ElevatedButton(onPressed: (){cartController.addProduct(product);}, child: const Text("Add To Cart"))
 
 
 
@@ -250,10 +245,10 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                             Container(
-                              width: 100 * PercentWidth,
+                              width: 100 * percentWidth,
                               height: 20 * percentHeight,
                               padding:
-                                  EdgeInsets.symmetric(horizontal: 5 * PercentWidth),
+                                  EdgeInsets.symmetric(horizontal: 5 * percentWidth),
                               //color: Colors.blue,
                               child: Row(
                                 mainAxisAlignment:
@@ -261,7 +256,7 @@ class _ProductPageState extends State<ProductPage> {
                                 children: [
                                   SizedBox(
                                     height: 12 * percentHeight,
-                                    width: 75 * PercentWidth,
+                                    width: 75 * percentWidth,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -316,7 +311,7 @@ class _ProductPageState extends State<ProductPage> {
                                   //Colors
                                   Container(
                                       height: 18 * percentHeight,
-                                      width: 13 * PercentWidth,
+                                      width: 13 * percentWidth,
                                       padding: EdgeInsets.symmetric(
                                           vertical: percentHeight),
                                       decoration: BoxDecoration(
@@ -341,7 +336,7 @@ class _ProductPageState extends State<ProductPage> {
                                                 backgroundColor: item.color,
                                                 shape: const CircleBorder(),
                                                 fixedSize: Size(
-                                                    8 * PercentWidth, 8 * PercentWidth),
+                                                    8 * percentWidth, 8 * percentWidth),
                                               ),
                                               onPressed: () {
                                                 setState(() {
@@ -358,10 +353,10 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                             Container(
-                              width:   100 * PercentWidth,
+                              width:   100 * percentWidth,
                               height:  15 * percentHeight,
                               padding:
-                                  EdgeInsets.symmetric(horizontal:  5 * PercentWidth),
+                                  EdgeInsets.symmetric(horizontal:  5 * percentWidth),
                               //color: Colors.blue,
                               child: Column(
                                 mainAxisAlignment:
@@ -381,7 +376,8 @@ class _ProductPageState extends State<ProductPage> {
                                           color: black,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400),
-                                      "I think we all know boldness when we see it. Nothing makes me smile more than when I see someone being fully themselves, with their own individual style and character, whatever that is. \n —Angelina Jolie")
+                                  product.description)
+                                      //"I think we all know boldness when we see it. Nothing makes me smile more than when I see someone being fully themselves, with their own individual style and character, whatever that is. \n —Angelina Jolie")
                                 ],
                               ),
                             ),
@@ -402,7 +398,7 @@ class _ProductPageState extends State<ProductPage> {
                                   height: percentHeight,
                                 ),
                                 SizedBox(
-                                  width:   90 * PercentWidth,
+                                  width:   90 * percentWidth,
                                   height:  12 * percentHeight,
                                   child: Column(
                                     crossAxisAlignment:
@@ -421,7 +417,8 @@ class _ProductPageState extends State<ProductPage> {
                                               color: black,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w300),
-                                          "I absolutely love this dress! The fabric is soft and comfortable, and the fit is perfect. The vibrant color and stylish design make it a standout piece in my wardrobe. I've received so many compliments whenever I wear it!")
+                                          "${{product.description}}")
+                                          //"I absolutely love this dress! The fabric is soft and comfortable, and the fit is perfect. The vibrant color and stylish design make it a standout piece in my wardrobe. I've received so many compliments whenever I wear it!")
                                     ],
                                   ),
                                 ),
@@ -429,7 +426,7 @@ class _ProductPageState extends State<ProductPage> {
                                   height: percentHeight,
                                 ),
                                 SizedBox(
-                                  width:   90 * PercentWidth,
+                                  width:   90 * percentWidth,
                                   height:  12 * percentHeight,
                                   child: Column(
                                     crossAxisAlignment:
@@ -456,7 +453,7 @@ class _ProductPageState extends State<ProductPage> {
                                   height: percentHeight,
                                 ),
                                 SizedBox(
-                                  width:   90 * PercentWidth,
+                                  width:   90 * percentWidth,
                                   height:  12 * percentHeight,
                                   child: Column(
                                     crossAxisAlignment:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yokubo/pages/Dashboard/dashboard.dart';
 import 'package:get/get.dart';
+import 'package:yokubo/pages/Product/product_page.dart';
 
 import 'pages/Dashboard/dashboard_binding.dart';
 
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(useMaterial3: true),
       initialRoute: "/",
       getPages: [
-        GetPage(name: "/", page: ()=>DashBoard(),
-        binding: DashboardBinding()
+        GetPage(name: "/product_page", page: ()=>const ProductPage()),
+        GetPage(name: "/", page: ()=>const DashBoard(),
+        binding: DashboardBinding(),
         ),
       ],
     );
