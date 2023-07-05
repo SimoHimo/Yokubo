@@ -8,6 +8,8 @@ class ToPay extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
+        height:double.infinity,
+        width: double.infinity,
         color: Colors.white,
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.center,

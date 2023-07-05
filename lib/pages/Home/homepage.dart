@@ -8,6 +8,8 @@ import 'package:yokubo/pages/Home/model_class.dart';
 import 'package:yokubo/pages/Product/product_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:yokubo/pages/Profile/settings_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -230,17 +232,20 @@ class _HomePageState extends State<HomePage> {
                                 },
 
 
-                                child: Container(
-                                  width: width * 70,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: black.withOpacity(0.7),
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            "${productlist[index].images[2]}"),
-                                        fit: BoxFit.cover),
+                                child: CachedNetworkImage(
+                                  imageUrl: '${productlist[index].images[0]}',
+                                  imageBuilder: (context, imageProvider) => Container(
+                                    width: width * 70,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black12),
+                                      image: DecorationImage(
+                                          image: imageProvider, fit: BoxFit.cover),
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+
                                   ),
-                                  //child: Center(child: Text("index: $index")),
+                                  placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
                                 ),
                               );
                             },
@@ -332,18 +337,48 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      "${productlist[index].images[0]}"),
-                                                  fit: BoxFit.cover),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
+
+
+
+
+                                          CachedNetworkImage(
+                                            imageUrl: '${productlist[index].images[0]}',
+                                            imageBuilder: (context, imageProvider) => Container(
+                                              height: 175,
+                                              width: 200,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: imageProvider, fit: BoxFit.cover),
+                                                borderRadius:
+                                                BorderRadius.circular(25),
+                                              ),
+
                                             ),
-                                            height: 175,
-                                            width: 200,
+                                            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                            errorWidget: (context, url, error) => const Icon(Icons.error),
                                           ),
+
+
+
+
+                                          // Container(
+                                          //   decoration: BoxDecoration(
+                                          //     image: DecorationImage(
+                                          //         image: NetworkImage(
+                                          //             "${productlist[index].images[0]}"),
+                                          //         fit: BoxFit.cover),
+                                          //     borderRadius:
+                                          //         BorderRadius.circular(25),
+                                          //   ),
+                                          //   height: 175,
+                                          //   width: 200,
+                                          // ),
+
+
+
+
+
+
 
                                            Expanded(
                                             child:Column(

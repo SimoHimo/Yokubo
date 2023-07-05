@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:yokubo/pages/Dashboard/dashboard_controller.dart';
-import '../../custom_animated_bottom_bar.dart';
+import 'custom_animated_bottom_bar.dart';
 import '../Cart/cart_page.dart';
 import '../Home/homepage.dart';
 import '../Notifications/notification_page.dart';
