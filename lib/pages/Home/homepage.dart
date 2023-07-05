@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:yokubo/pages/Home/model_class.dart';
 import 'package:yokubo/pages/Product/product_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:yokubo/pages/Profile/settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -112,9 +113,10 @@ class _HomePageState extends State<HomePage> {
                                         value: Menu.itemOne,
                                         child: Text('Account'),
                                       ),
-                                      const PopupMenuItem<Menu>(
+                                       PopupMenuItem<Menu>(
                                         value: Menu.itemTwo,
-                                        child: Text('Settings'),
+                                        child: const Text('Settings'),
+                                        onTap: (){Get.to(()=>const SettingsPage(),transition: Transition.leftToRightWithFade);},
                                       ),
                                       const PopupMenuItem<Menu>(
                                         value: Menu.itemThree,
@@ -221,27 +223,11 @@ class _HomePageState extends State<HomePage> {
 
 
 
-
-
-
-
                               return InkWell(
                                 onTap: () {
                                   Get.to(() => const ProductPage(),
                                       arguments: productlist[index]);
                                 },
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                                 child: Container(
@@ -353,7 +339,7 @@ class _HomePageState extends State<HomePage> {
                                                       "${productlist[index].images[0]}"),
                                                   fit: BoxFit.cover),
                                               borderRadius:
-                                                  BorderRadius.circular(18),
+                                                  BorderRadius.circular(25),
                                             ),
                                             height: 175,
                                             width: 200,
@@ -433,5 +419,5 @@ final List<String> _menuItems = <String>[
   'About',
   'Contact',
   'Settings',
-  'Sign Out',
+  'Sign In',
 ];

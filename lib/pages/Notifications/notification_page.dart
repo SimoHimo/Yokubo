@@ -72,7 +72,6 @@ class _NotificationPageState extends State<NotificationPage> {
             itemCount: notifications.length,
             itemBuilder: (context, index) {
               var notification = notifications[index];
-              var notificationId = notification['notification_id'];
               var timestamp = notification['timestamp'];
               var message = notification['message'];
               return Padding(
@@ -83,7 +82,7 @@ class _NotificationPageState extends State<NotificationPage> {
                     onTap: () {},
                     title: Text(message,style: const TextStyle(fontWeight: FontWeight.w600),),
                     subtitle: Text(timestamp.toString()),
-                    leading: notificationId%3==0?const Text("messege"):const Text("Notification"),
+                    leading:const Text("Notification"),
                   ),
                 ),
               );

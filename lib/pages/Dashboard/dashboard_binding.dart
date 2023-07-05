@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:yokubo/pages/Cart/cart_page_controller.dart';
 import 'package:yokubo/pages/Dashboard/dashboard_controller.dart';
 import 'package:yokubo/pages/Home/homepage_controller.dart';
-import 'package:yokubo/pages/Messeges/messege_page_controller.dart';
+import 'package:yokubo/pages/Notifications/notification_page_controller.dart';
 import 'package:yokubo/pages/Profile/profile_page_controller.dart';
 
 class DashboardBinding extends Bindings{

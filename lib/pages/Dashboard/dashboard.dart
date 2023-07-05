@@ -5,7 +5,7 @@ import 'package:yokubo/pages/Dashboard/dashboard_controller.dart';
 import '../../custom_animated_bottom_bar.dart';
 import '../Cart/cart_page.dart';
 import '../Home/homepage.dart';
-import '../Messeges/messege_page.dart';
+import '../Notifications/notification_page.dart';
 import '../Profile/profile_page.dart';
 
 
