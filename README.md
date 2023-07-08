@@ -6,5 +6,5 @@ Yokubo(欲望) is a Japanese word that means Desire. In our online marketplace, 
 ![images](https://github.com/SimoHimo/Yokubo/blob/main/assets/images/mockups1.jpg)
 # This app is made with Getx and has REST API integrated from dummyjson.com
 
-![images](https://github.com/SimoHimo/Yokubo/blob/main/assets/images/mockups2.jpg)
+![images](https://github.com/SimoHimo/Yokubo/blob/main/assets/images/mockups2.png)
 
