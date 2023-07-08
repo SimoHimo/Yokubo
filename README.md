@@ -1,4 +1,4 @@
-# yokubo
+# YOKUBO
 
 # Shop what you desire.
 Yokubo(欲望) is a Japanese word that means Desire. In our online marketplace, you'll buy what you desire.
