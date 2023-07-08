@@ -16,7 +16,7 @@ class CartPage extends StatelessWidget {
       () => Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Cart",
+            " My Cart",
             style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
