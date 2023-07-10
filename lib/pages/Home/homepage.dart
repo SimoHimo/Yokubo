@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yokubo/pages/Home/model_class.dart';
+import 'package:yokubo/pages/Login/login_page.dart';
 import 'package:yokubo/pages/Product/product_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:yokubo/pages/Profile/settings_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -51,401 +52,378 @@ class _HomePageState extends State<HomePage> {
     var height = (MediaQuery.of(context).size.height) / 100;
     var width = (MediaQuery.of(context).size.width) / 100;
 
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: _drawer(),
-      body: Container(
-        color: Colors.white,
-        height: double.infinity,
-        width: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+    return SafeArea(
+      top: true,
+      child: Scaffold(
+        key: _scaffoldKey,
+        drawer: Drawer(
+          child: ListView(
+
             children: [
-              //Catagory,Profile
-              SizedBox(
-                height: height * 8,
-                width: width * 90,
-                //color: Colors.white,
-                child: Stack(
-                  children: [
-                    Positioned(
-                        left: 0,
-                        bottom: height,
-                        child: InkWell(
-                          onTap: () {
-                            _scaffoldKey.currentState?.openDrawer();
-                          },
+              const SizedBox(height: 100,),
+              ListTile(
+                title: const Text("Sign out"),
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                iconColor: black,
+              )
+            ],
+          ),
+        ),
+        body: Container(
+          color: Colors.white,
+          height: double.infinity,
+          width: double.infinity,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                //Catagory,Profile
+                SizedBox(
+                  height: height * 8,
+                  width: width * 90,
+                  //color: Colors.white,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                          left: 0,
+                          bottom: height,
+                          child: InkWell(
+                            onTap: () {
+                              _scaffoldKey.currentState?.openDrawer();
+                            },
+                            child: Container(
+                              height: height * 4.8,
+                              width: height * 4.8,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: black),
+                              child: Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.bars,
+                                  size: height * 2.5,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          )),
+                      Positioned(
+                          right: 0,
+                          bottom: height,
                           child: Container(
-                            height: height * 4.8,
-                            width: height * 4.8,
+                              height: height * 5,
+                              width: height * 5,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: black),
+                              child: PopupMenuButton<Menu>(
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.userAstronaut,
+                                    size: height * 2.8,
+                                    color: Colors.white,
+                                  ),
+                                  offset: const Offset(0, 40),
+                                  onSelected: (Menu item) {},
+                                  itemBuilder: (BuildContext context) =>
+                                      <PopupMenuEntry<Menu>>[
+                                        const PopupMenuItem<Menu>(
+                                          value: Menu.itemOne,
+                                          child: Text('Account'),
+                                        ),
+                                        PopupMenuItem<Menu>(
+                                          value: Menu.itemTwo,
+                                          child: const Text('Settings'),
+                                          onTap: () {
+                                            Get.to(() => const SettingsPage(),
+                                                transition: Transition
+                                                    .leftToRightWithFade);
+                                          },
+                                        ),
+                                        const PopupMenuItem<Menu>(
+                                          value: Menu.itemThree,
+                                          child: Text('Switch'),
+                                        ),
+                                      ]))
+                          // FaIcon(FontAwesomeIcons.userAstronaut,size: height*2.8,color: Colors.white,),
+                          ),
+                    ],
+                  ),
+                ), //Catagory,Profile
+
+                //Wellcome Text
+                Container(
+                    height: height * 15,
+                    width: width * 90,
+                    //color: Colors.white,
+                    padding: EdgeInsets.fromLTRB(0, height * 3, 0, height * 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("YOKUBO",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  fontSize: height * 3.8,
+                                  fontWeight: FontWeight.w800,
+                                  color: black),
+                            )),
+                        Text("Shop Your Desire",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  fontSize: height * 2.8,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black45),
+                            ))
+                      ],
+                    )),
+
+                //Search
+                Container(
+                    height: height * 10,
+                    width: width * 100,
+                    //color: Colors.yellow,
+                    padding: EdgeInsets.fromLTRB(
+                        width * 5, height * 0, width * 5, height * 2),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: height * 6,
+                          width: width * 75,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: darkwhite),
+                          child: TextField(
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                              hintText: "Search Here",
+                              hintStyle: const TextStyle(color: Colors.grey),
+                              prefixIcon: const Icon(Icons.search),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              border: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30.0)),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: height * 6,
+                            width: height * 6,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 color: black),
                             child: Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.bars,
-                                size: height * 2.5,
-                                color: Colors.white,
-                              ),
-                            ),
+                                child: FaIcon(FontAwesomeIcons.sliders,
+                                    color: Colors.white, size: height * 2.8)),
                           ),
-                        )),
-                    Positioned(
-                        right: 0,
-                        bottom: height,
-                        child: Container(
-                            height: height * 5,
-                            width: height * 5,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: black),
-                            child: PopupMenuButton<Menu>(
-                                icon: FaIcon(
-                                  FontAwesomeIcons.userAstronaut,
-                                  size: height * 2.8,
-                                  color: Colors.white,
-                                ),
-                                offset: const Offset(0, 40),
-                                onSelected: (Menu item) {},
-                                itemBuilder: (BuildContext context) =>
-                                    <PopupMenuEntry<Menu>>[
-                                      const PopupMenuItem<Menu>(
-                                        value: Menu.itemOne,
-                                        child: Text('Account'),
-                                      ),
-                                       PopupMenuItem<Menu>(
-                                        value: Menu.itemTwo,
-                                        child: const Text('Settings'),
-                                        onTap: (){Get.to(()=>const SettingsPage(),transition: Transition.leftToRightWithFade);},
-                                      ),
-                                      const PopupMenuItem<Menu>(
-                                        value: Menu.itemThree,
-                                        child: Text('Switch'),
-                                      ),
-                                    ]))
-                        // FaIcon(FontAwesomeIcons.userAstronaut,size: height*2.8,color: Colors.white,),
-                        ),
-                  ],
-                ),
-              ), //Catagory,Profile
+                        )
+                      ],
+                    )),
 
-              //Wellcome Text
-              Container(
-                  height: height * 15,
-                  width: width * 90,
-                  //color: Colors.white,
-                  padding: EdgeInsets.fromLTRB(0, height * 3, 0, height * 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("YOKUBO",
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: height * 3.8,
-                                fontWeight: FontWeight.w800,
-                                color: black),
-                          )),
-                      Text("Shop Your Desire",
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: height * 2.8,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black45),
-                          ))
-                    ],
-                  )),
-
-              //Search
-              Container(
-                  height: height * 10,
-                  width: width * 100,
-                  //color: Colors.yellow,
-                  padding: EdgeInsets.fromLTRB(
-                      width * 5, height * 0, width * 5, height * 2),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: height * 6,
-                        width: width * 75,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: darkwhite),
-                        child: TextField(
-                          onChanged: (value) {},
-                          decoration: InputDecoration(
-                            hintText: "Search Here",
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            prefixIcon: const Icon(Icons.search),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: height * 6,
-                          width: height * 6,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: black),
-                          child: Center(
-                              child: FaIcon(FontAwesomeIcons.sliders,
-                                  color: Colors.white, size: height * 2.8)),
-                        ),
-                      )
-                    ],
-                  )),
-
-              //Carousel Slider
-              Container(
-                  height: height * 23,
-                  width: width * 100,
-                  padding:
-                      EdgeInsets.fromLTRB(width * 5, height * 1, 0, height * 1),
-                  child: FutureBuilder(
-                    future: getProducts(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        return CarouselSlider.builder(
-                            itemCount: productlist.length,
-                            itemBuilder: (context, index, realIndex) {
-
-
-
-
-
-
-                              return InkWell(
-                                onTap: () {
-                                  Get.to(() => const ProductPage(),
-                                      arguments: productlist[index]);
-                                },
-
-
-                                child: CachedNetworkImage(
-                                  imageUrl: '${productlist[index].images[0]}',
-                                  imageBuilder: (context, imageProvider) => Container(
-                                    width: width * 70,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black12),
-                                      image: DecorationImage(
-                                          image: imageProvider, fit: BoxFit.cover),
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-
-                                  ),
-                                  placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                                ),
-                              );
-                            },
-                            options: CarouselOptions(
-                              autoPlay: false,
-                              padEnds: false,
-                            ));
-                      } else {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                    },
-                  )),
-
-              //New Arrival
-              SizedBox(
-                height: height * 5,
-                width: width * 90,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("New Arivals",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              color: black),
-                        )),
-                    Text("View All",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: black),
-                        )),
-                  ],
-                ),
-              ), //New Arrival
-
-              //GridView
-              SizedBox(
-                  height: height * 425,
-                  child: FutureBuilder(
+                //Carousel Slider
+                Container(
+                    height: height * 23,
+                    width: width * 100,
+                    padding:
+                        EdgeInsets.fromLTRB(width * 5, height * 1, 0, height * 1),
+                    child: FutureBuilder(
                       future: getProducts(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.done) {
-                          return GridView.builder(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: width * 5),
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            itemCount: productlist.length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: width * 3,
-                                    mainAxisSpacing: width * 3,
-                                    childAspectRatio: 0.70),
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  Get.to(() => const ProductPage(),
-                                    arguments: productlist[index]
-                                  );
-                                },
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      //border: Border.all(color: black, width: 5),
-                                      color: Colors.white,
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 10.0, // soften the shadow
-                                          spreadRadius: 5.0, //extend the shadow
-                                          offset: Offset(
-                                            5.0, // Move to right 10  horizontally
-                                            5.0, // Move to bottom 10 Vertically
-                                          ),
-                                        )
-                                      ],
+                          return CarouselSlider.builder(
+                              itemCount: productlist.length,
+                              itemBuilder: (context, index, realIndex) {
+                                return InkWell(
+                                  onTap: () {
+                                    Get.to(() => const ProductPage(),
+                                        arguments: productlist[index]);
+                                  },
+                                  child: CachedNetworkImage(
+                                    imageUrl: '${productlist[index].images[0]}',
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      width: width * 70,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black12),
+                                        image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 2, vertical: 2),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
+                                    placeholder: (context, url) => const Center(
+                                        child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
+                                );
+                              },
+                              options: CarouselOptions(
+                                autoPlay: false,
+                                padEnds: false,
+                              ));
+                        } else {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+                      },
+                    )),
 
+                //New Arrival
+                SizedBox(
+                  height: height * 5,
+                  width: width * 90,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("New Arivals",
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                color: black),
+                          )),
+                      Text("View All",
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: black),
+                          )),
+                    ],
+                  ),
+                ), //New Arrival
 
-
-
-                                          CachedNetworkImage(
-                                            imageUrl: '${productlist[index].images[0]}',
-                                            imageBuilder: (context, imageProvider) => Container(
-                                              height: 175,
-                                              width: 200,
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: imageProvider, fit: BoxFit.cover),
-                                                borderRadius:
-                                                BorderRadius.circular(25),
-                                              ),
-
-                                            ),
-                                            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                                            errorWidget: (context, url, error) => const Icon(Icons.error),
-                                          ),
-
-
-
-
-                                          // Container(
-                                          //   decoration: BoxDecoration(
-                                          //     image: DecorationImage(
-                                          //         image: NetworkImage(
-                                          //             "${productlist[index].images[0]}"),
-                                          //         fit: BoxFit.cover),
-                                          //     borderRadius:
-                                          //         BorderRadius.circular(25),
-                                          //   ),
-                                          //   height: 175,
-                                          //   width: 200,
-                                          // ),
-
-
-
-
-
-
-
-                                           Expanded(
-                                            child:Column(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              mainAxisSize: MainAxisSize.max,
-                                              children:[
-                                                Text(
-                                                  productlist[index].title,
-                                                  style: TextStyle(
-                                                      color: black,
-                                                      fontSize: 18,
-                                                      overflow: TextOverflow.ellipsis,),
-                                                ),
-                                                Text(
-                                                  "\$${productlist[index].price}",
-                                                  style: TextStyle(
-                                                     color: black,
-                                                      fontSize: 20,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                              ],
-
+                //GridView
+                SizedBox(
+                    height: height * 425,
+                    child: FutureBuilder(
+                        future: getProducts(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.done) {
+                            return GridView.builder(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: width * 5),
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              itemCount: productlist.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: width * 3,
+                                      mainAxisSpacing: width * 3,
+                                      childAspectRatio: 0.70),
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    Get.to(() => const ProductPage(),
+                                        arguments: productlist[index]);
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        //border: Border.all(color: black, width: 5),
+                                        color: Colors.white,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 10.0, // soften the shadow
+                                            spreadRadius: 5.0, //extend the shadow
+                                            offset: Offset(
+                                              5.0,
+                                              // Move to right 10  horizontally
+                                              5.0, // Move to bottom 10 Vertically
                                             ),
                                           )
                                         ],
                                       ),
-                                    )),
-                              );
-                            },
-                          ); //Gridview
-                        } else {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        }
-                      })) //Bottom
-            ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 2, vertical: 2),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl:
+                                                  '${productlist[index].images[0]}',
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      Container(
+                                                height: 175,
+                                                width: 200,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: imageProvider,
+                                                      fit: BoxFit.cover),
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                ),
+                                              ),
+                                              placeholder: (context, url) => const Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    productlist[index].title,
+                                                    style: TextStyle(
+                                                      color: black,
+                                                      fontSize: 18,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "\$${productlist[index].price}",
+                                                    style: TextStyle(
+                                                        color: black,
+                                                        fontSize: 20,
+                                                        overflow:
+                                                            TextOverflow.ellipsis,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                                );
+                              },
+                            ); //Gridview
+                          } else {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                        })) //Bottom
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-
-  Widget _drawer() => Drawer(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: _menuItems
-                .map((item) => ListTile(
-                      onTap: () {
-                        _scaffoldKey.currentState?.openEndDrawer();
-                      },
-                      title: Text(item,
-                          style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black45),
-                          )),
-                    ))
-                .toList(),
-          ),
-        ),
-      );
 }
 
 enum Menu { itemOne, itemTwo, itemThree }

@@ -57,6 +57,8 @@ class _ProductPageState extends State<ProductPage> {
                   children: [
 
 
+
+                    //Image
                     SizedBox(
                       height: 55 * percentHeight,
                       width: 100 * percentWidth,
@@ -65,17 +67,21 @@ class _ProductPageState extends State<ProductPage> {
                         image: NetworkImage("${product.images[0]}"),
                         fit: BoxFit.contain,),
                     ),
+
+                    //CartPage
                     Positioned(
                         top: 0,
                         right: 3 * percentWidth,
                         child: IconButton(
                             onPressed: () {
-                              Get.to(() => CartPage());
+                              Get.to(()=> CartPage());
                             },
                             icon: FaIcon(
                               FontAwesomeIcons.bagShopping,
                               color: black,
                             ))),
+
+                    //Back
                     Positioned(
                         top: 0,
                         left: 3 * percentWidth,
@@ -87,6 +93,8 @@ class _ProductPageState extends State<ProductPage> {
                               FontAwesomeIcons.arrowLeft,
                               color: black,
                             ))),
+
+                    //Favorite
                     Positioned(
                       top: 43 * percentHeight,
                       right: 3 * percentWidth,
@@ -108,6 +116,15 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                       ),
                     ),
+
+
+
+
+
+
+
+
+                    //Bottom Part Starts Here
                     Positioned(
                       bottom: 0,
                       child: Container(
@@ -131,12 +148,10 @@ class _ProductPageState extends State<ProductPage> {
                           BoxShadow(
                           color: Colors.black.withOpacity(0.03),
                           blurRadius: 10.0,
-                          // soften the shadow
                           spreadRadius: 5.0,
-                          //extend the shadow
                           offset: const Offset(
-                            0.0, // Move to right 10  horizontally
-                            -15.0, // Move to bottom 10 Vertically
+                            0.0,
+                            -15.0,
                           ),
                         ),],
                         //color: Colors.black12,

@@ -8,11 +8,8 @@ import '../Home/homepage.dart';
 import '../Notifications/notification_page.dart';
 import '../Profile/profile_page.dart';
 
-
-
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
-
 
   @override
   DashBoardState createState() => DashBoardState();
@@ -24,15 +21,16 @@ class DashBoardState extends State<DashBoard> {
 
   final _inactiveColor = Colors.grey;
   final _activeColor = const Color(0xff2c3e50);
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DashboardController>(builder: (controller){
+    return GetBuilder<DashboardController>(builder: (controller) {
       return Scaffold(
           body: SafeArea(
             child: IndexedStack(
-            index: controller.tabIndex,
-              children:  [
-                const HomePage(),
+              index: controller.tabIndex,
+              children: [
+                HomePage(),
                 CartPage(),
                 const NotificationPage(),
                 const ProfilePage(),
@@ -49,25 +47,27 @@ class DashBoardState extends State<DashBoard> {
             onItemSelected: controller.changeTabIndex,
             items: <BottomNavyBarItem>[
               BottomNavyBarItem(
-                icon: const FaIcon(FontAwesomeIcons.house,),
+                icon: const FaIcon(
+                  FontAwesomeIcons.house,
+                ),
                 title: const Text('Home'),
                 activeColor: _activeColor,
                 inactiveColor: _inactiveColor,
                 textAlign: TextAlign.center,
               ),
-
-
               BottomNavyBarItem(
-                icon: const FaIcon(FontAwesomeIcons.cartPlus,),
+                icon: const FaIcon(
+                  FontAwesomeIcons.cartPlus,
+                ),
                 title: const Text('Cart'),
                 activeColor: _activeColor,
                 inactiveColor: _inactiveColor,
                 textAlign: TextAlign.center,
               ),
-
-
               BottomNavyBarItem(
-                icon: const FaIcon(FontAwesomeIcons.message,),
+                icon: const FaIcon(
+                  FontAwesomeIcons.message,
+                ),
                 title: const Text(
                   'Messeges',
                 ),
@@ -75,8 +75,6 @@ class DashBoardState extends State<DashBoard> {
                 inactiveColor: _inactiveColor,
                 textAlign: TextAlign.center,
               ),
-
-
               BottomNavyBarItem(
                 icon: const FaIcon(
                   FontAwesomeIcons.userAstronaut,
@@ -87,8 +85,7 @@ class DashBoardState extends State<DashBoard> {
                 textAlign: TextAlign.center,
               ),
             ],
-          )
-      );
+          ));
     });
   }
 }

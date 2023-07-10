@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simohimo.yokubo">
    <application
-        android:label="yokubo"
+        android:label="Yokubo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

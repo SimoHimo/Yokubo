@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "740523113965-ciaujpqsp72dnmcoc1b9qcgbc96p76ei.apps.googleusercontent.com",
+          "client_id": "740523113965-tv5vdmigm81b82mkjb8cfki9dfeeijkf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,13 @@
             {
               "client_id": "740523113965-ciaujpqsp72dnmcoc1b9qcgbc96p76ei.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "740523113965-uk3o2kccpcff2qs9ora9fcr3mit0oul5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.simohimo.yokubo"
+              }
             }
           ]
         }
