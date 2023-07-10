@@ -6,9 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yokubo/pages/Home/model_class.dart';
-import 'package:yokubo/pages/Login/login_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:yokubo/pages/Product/product_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:yokubo/pages/Profile/profile_page.dart';
 import 'package:yokubo/pages/Profile/settings_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -51,16 +52,46 @@ class _HomePageState extends State<HomePage> {
     var black = const Color(0xff2c3e50);
     var height = (MediaQuery.of(context).size.height) / 100;
     var width = (MediaQuery.of(context).size.width) / 100;
-
+    void launchURL(url) async {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
     return SafeArea(
       top: true,
       child: Scaffold(
         key: _scaffoldKey,
         drawer: Drawer(
+          backgroundColor: darkwhite,
           child: ListView(
-
+            padding: EdgeInsets.only(top: 300),
             children: [
-              const SizedBox(height: 100,),
+
+
+              ListTile(
+
+                title: const Text('Contact us', style: TextStyle(fontSize: 16)),
+                onTap: () {
+                  launchURL(Uri.parse(
+                      "mailto:syedmishkatulhaque@gmail.com?subject=regarding Yokubo App"));
+                },
+              ),
+              ListTile(
+                title: const Text('About Us', style: TextStyle(fontSize: 16)),
+                onTap: () {
+                  launchURL(Uri.parse(
+                      'https://www.linkedin.com/in/syed-mishkatul-haque/'));
+                },
+              ),
+              ListTile(
+                title:
+                const Text('Source Code', style: TextStyle(fontSize: 16)),
+                onTap: () {
+                  launchURL(Uri.parse('https://github.com/SimoHimo/Yokubo'));
+                },
+              ),
               ListTile(
                 title: const Text("Sign out"),
                 onTap: () {
@@ -128,17 +159,14 @@ class _HomePageState extends State<HomePage> {
                                   onSelected: (Menu item) {},
                                   itemBuilder: (BuildContext context) =>
                                       <PopupMenuEntry<Menu>>[
-                                        const PopupMenuItem<Menu>(
-                                          value: Menu.itemOne,
+                                         PopupMenuItem<Menu>(
+                                          onTap: (){Get.to(()=>ProfilePage(),);},
                                           child: Text('Account'),
                                         ),
                                         PopupMenuItem<Menu>(
-                                          value: Menu.itemTwo,
                                           child: const Text('Settings'),
                                           onTap: () {
-                                            Get.to(() => const SettingsPage(),
-                                                transition: Transition
-                                                    .leftToRightWithFade);
+                                            Get.to(()=> const SettingsPage(),);
                                           },
                                         ),
                                         const PopupMenuItem<Menu>(

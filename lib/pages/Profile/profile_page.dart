@@ -2,7 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:yokubo/pages/Profile/billing.dart';
 import 'package:yokubo/pages/Profile/settings_page.dart';
+import 'package:yokubo/pages/Profile/help_page.dart';
+
+import 'about_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -15,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
   List<String> profileitems = [
     "About",
     "Settings",
-    "Wishlist",
+    "Help",
     "billing Details",
     "Logout"
   ];
@@ -23,16 +27,16 @@ class _ProfilePageState extends State<ProfilePage> {
   List<IconData> profileicons = [
     FontAwesomeIcons.addressCard,
     FontAwesomeIcons.gears,
-    FontAwesomeIcons.heart,
+    FontAwesomeIcons.info,
     FontAwesomeIcons.wallet,
     FontAwesomeIcons.rightFromBracket
   ];
 
   List buttonsfunction = [
-    () {},
+    () {Get.to(()=> AboutPage(),transition: Transition.leftToRightWithFade);},
     () {Get.to(()=>const SettingsPage(),transition: Transition.leftToRightWithFade);},
-    () {},
-    () {},
+    () {Get.to(()=>const HelpPage(),transition: Transition.leftToRightWithFade);},
+    () {Get.to(()=> BillingPage(),transition: Transition.leftToRightWithFade);},
     () {FirebaseAuth.instance.signOut();},
   ];
 

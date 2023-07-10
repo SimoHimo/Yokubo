@@ -4,7 +4,7 @@ import 'package:yokubo/pages/Dashboard/dashboard.dart';
 import 'package:get/get.dart';
 import 'package:yokubo/pages/Product/product_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:yokubo/pages/auth_page.dart';
+import 'package:yokubo/pages/Auth%20Page/auth_page.dart';
 import 'firebase_options.dart';
 import 'pages/Dashboard/dashboard_binding.dart';
 

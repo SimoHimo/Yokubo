@@ -48,7 +48,7 @@ class CartPage extends StatelessWidget {
 
             Positioned(
               height: 70,
-              width: 1000,
+              width: 400,
               bottom: 0,
               child: CartTotal(),)
           ],
@@ -104,14 +104,14 @@ class CartProductCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
             ),
             height: 100,
-            width: 90,
+            width: 85,
           ),
 
           //Texts
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: SizedBox(
-              width: 170,
+              width: 165,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +142,7 @@ class CartProductCard extends StatelessWidget {
           ),
           //Buttons
           SizedBox(
-            width: 105,
+            width: 115,
             child: Row(
               children: [
                 IconButton(

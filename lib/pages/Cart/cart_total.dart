@@ -12,44 +12,30 @@ class CartTotal extends StatelessWidget {
     return controller.productsmap.isNotEmpty?
 
 
-    Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(25)),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10.0, // soften the shadow
-            spreadRadius: 3.0, //extend the shadow
-            offset: const Offset(
-              0.0, // Move to right 10  horizontally
-              -5.0, // Move to bottom 10 Vertically
-            ),
-          )
-        ],
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 45),
+    SizedBox(
+      width: 50,
+      //padding: const EdgeInsets.symmetric(horizontal: 45),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const Text(
-            "Total:  ",
-            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
-          ),
           Text(
-            "${controller.total}",
-            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
+            "Total:  ${controller.total}",
+            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 22,color: Color(0xff2c3e50),),
           ),
-          const SizedBox(
-            width: 80,
-          ),
-          ElevatedButton(onPressed: (){Get.to(const ToPay());
-            controller.productsmap.clear();
-            }, child: const Text(
-            "Pay",
-            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
-          ),)
+          InkWell(
+            onTap: (){()=>Get.to(const ToPay());
+            controller.productsmap.clear();},
+            child: Container(
+              height: 50,
+              width: 160,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                  color: Color(0xff2c3e50),
+              ),
+              child: Center(child: Text("Checkout",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),),),
+            ),
+          )
         ],
       ),
     )

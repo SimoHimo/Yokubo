@@ -6,8 +6,6 @@ import 'package:yokubo/pages/Login/my_button.dart';
 import 'package:yokubo/pages/Login/my_textfield.dart';
 import 'package:yokubo/pages/Login/signup_page.dart';
 
-import '../Dashboard/dashboard.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -53,8 +51,8 @@ class _LoginPageState extends State<LoginPage> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Welcome back, you\'ve been missed!',
-                  style: TextStyle(fontSize: 20),
+                  'Welcome back, we were missing you!',
+                  style: TextStyle(fontSize: 17, color: Colors.black54),
                 )),
             MyTextField(
               hintText: 'Enter Username',
@@ -68,18 +66,14 @@ class _LoginPageState extends State<LoginPage> {
                 controller: passwordController,
                 labelText: "Password"),
             TextButton(onPressed: () {}, child: const Text('Forgot Password?')),
-
-            Mybutton(onTap: signUserIn),
-
+            Mybutton(buttonName: "Sign In",onTap: signUserIn),
             const SizedBox(
               height: 80,
             ),
             SignInButton(
                 buttonType: ButtonType.google,
                 elevation: 0.9,
-                onPressed: () {
-                  Get.to(() => const DashBoard());
-                }),
+                onPressed: () {}),
             SignInButton(
                 buttonType: ButtonType.apple, elevation: 0.9, onPressed: () {}),
             Padding(

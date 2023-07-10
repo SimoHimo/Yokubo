@@ -24,7 +24,9 @@ class MyTextField extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 30,vertical: 20),
           fillColor: Colors.grey.shade200,
 
+
           border: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.green, width: 5),
             borderRadius: BorderRadius.circular(50)
           ),
           labelText: labelText,
