@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -32,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
     () {Get.to(()=>const SettingsPage(),transition: Transition.leftToRightWithFade);},
     () {},
     () {},
-    () {},
+    () {FirebaseAuth.instance.signOut();},
   ];
 
   @override

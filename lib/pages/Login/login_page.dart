@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var height = (MediaQuery.of(context).size.height) / 100;
-    var width = (MediaQuery.of(context).size.width) / 100;
+    //var width = (MediaQuery.of(context).size.width) / 100;
     return Scaffold(
         body: SafeArea(
       top: true,
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 120,
             ),
             SizedBox(
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                   image: AssetImage('assets/images/LogoSide.png'),
                   fit: BoxFit.fitHeight),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
 
             Mybutton(onTap: signUserIn),
 
-            SizedBox(
+            const SizedBox(
               height: 80,
             ),
             SignInButton(
@@ -87,12 +87,12 @@ class _LoginPageState extends State<LoginPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("   Don\'t Have an Account?"),
+                  const Text("   Don't Have an Account?"),
                   TextButton(
                       onPressed: () {
-                        Get.to(() => SignUpPage());
+                        Get.to(() => const SignUpPage());
                       },
-                      child: Text("Sign Up Now"))
+                      child: const Text("Sign Up Now"))
                 ],
               ),
             )

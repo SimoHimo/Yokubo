@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> {
 
                 //GridView
                 SizedBox(
-                    height: height * 425,
+                    height: height * 360,
                     child: FutureBuilder(
                         future: getProducts(),
                         builder: (context, snapshot) {

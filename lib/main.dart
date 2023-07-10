@@ -32,9 +32,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(useMaterial3: true),
       initialRoute: "/auth_page",
       getPages: [
-        GetPage(name: "/auth_page", page: ()=>const AuthPage()),
-        GetPage(name: "/product_page", page: ()=>const ProductPage()),
-        GetPage(name: "/", page: ()=>const DashBoard(), binding: DashboardBinding(),),
+        GetPage(name: "/auth_page", page: ()=>const AuthPage(),binding: DashboardBinding(),),
+        GetPage(name: "/navbar", page: ()=>const ProductPage()),
+        GetPage(name: "/", page: ()=>const DashBoard(), ),
       ],
     );
   }
