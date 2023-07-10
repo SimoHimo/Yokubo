@@ -12,10 +12,10 @@ final void Function() onTap;
         height: 50,
         width: 300,
         decoration: BoxDecoration(
-            color: Color(0xff2c3e50),
+            color: const Color(0xff2c3e50),
           borderRadius: BorderRadius.circular(50)
         ),
-        child: Center(child: Text("Sign in",style: TextStyle(color: Colors.white)),),
+        child: const Center(child: Text("Sign in",style: TextStyle(color: Colors.white)),),
       ),
     );
   }

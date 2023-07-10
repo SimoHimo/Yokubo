@@ -10,10 +10,8 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Center(child: const Text("Under Construction",style: TextStyle(color: Colors.black45),)),
-      ),
+    return const Scaffold(
+      body: Center(child: Text("Under Construction",style: TextStyle(color: Colors.black45),)),
     );
   }
 }
