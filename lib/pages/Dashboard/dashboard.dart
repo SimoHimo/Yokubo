@@ -31,9 +31,9 @@ class DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    var white = const Color(0xfff6f4f3);
     var black = const Color(0xff2c3e50);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: IndexedStack(
           index: tabIndex,
@@ -43,9 +43,9 @@ class DashBoardState extends State<DashBoard> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GNav(
-          backgroundColor: white,
+          backgroundColor: Colors.white,
           color: black,
-          activeColor: white,
+          activeColor: Colors.white,
           hoverColor: black,
           //tabActiveBorder: Border.all(color: black, width: 1),
           tabBackgroundColor: black,

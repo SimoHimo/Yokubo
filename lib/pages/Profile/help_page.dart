@@ -24,7 +24,7 @@ class HelpPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: ElevatedButton(onPressed:(){launchURL(Uri.parse(
-                "mailto:syedmishkatulhaque@gmail.com?subject=regarding Yokubo App"));} , child: Text("Contact")),
+                "mailto:syedmishkatulhaque@gmail.com?subject=regarding Yokubo App"));} , child: const Text("Contact")),
           )
         ],
 

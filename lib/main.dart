@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yokubo/pages/Dashboard/dashboard.dart';
 import 'package:get/get.dart';
-import 'package:yokubo/pages/Product/product_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:yokubo/pages/Auth%20Page/auth_page.dart';
+import 'package:yokubo/pages/Auth/auth_page.dart';
 import 'firebase_options.dart';
 import 'pages/Dashboard/dashboard_binding.dart';
 
@@ -33,8 +31,6 @@ class MyApp extends StatelessWidget {
       initialRoute: "/auth_page",
       getPages: [
         GetPage(name: "/auth_page", page: ()=>const AuthPage(),binding: DashboardBinding(),),
-        GetPage(name: "/navbar", page: ()=>const ProductPage()),
-        GetPage(name: "/", page: ()=>const DashBoard(), ),
       ],
     );
   }

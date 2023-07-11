@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BillingPage extends StatelessWidget {
   BillingPage({super.key});
-  List<String>billingItems = [
+  final List<String>billingItems = [
     "Name:Sherlock Holmes",
     "Address: 22b baker Street",
     "city: London",
@@ -12,7 +12,6 @@ class BillingPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    var black = const Color(0xff2c3e50);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -43,7 +42,7 @@ class BillingPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
               child: ListView.builder(
                   itemCount: billingItems.length,
                   shrinkWrap: true,
@@ -51,7 +50,7 @@ class BillingPage extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        padding: const EdgeInsets.all(7),
+                        //padding: const EdgeInsets.all(7),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
                           //border: Border.all(color: black, width: 5),
@@ -68,7 +67,7 @@ class BillingPage extends StatelessWidget {
                             )
                           ],
                         ),
-                        height: 70,
+                        height: 60,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 45),
                           child: Row(
@@ -98,22 +97,5 @@ class BillingPage extends StatelessWidget {
 
 
 
-
-    Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Name:Syed Mishkatul Haque",style: TextStyle(fontSize: 25,color: black,fontWeight: FontWeight.w300),),
-            Text("Birthday: 13/3/2001",style: TextStyle(fontSize: 25,color: black,fontWeight: FontWeight.w300),),
-            Text("Gender:   male",style: TextStyle(fontSize: 25,color: black,fontWeight: FontWeight.w300),),
-            Text("Email:      xSimohimoX@gmail.com",style: TextStyle(fontSize: 25,color: black,fontWeight: FontWeight.w300),),
-            Text("Mobile:   017XXXXXXXX",style: TextStyle(fontSize: 25,color: black,fontWeight: FontWeight.w300),),
-          ],
-        ),
-      ),
-    );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yokubo/pages/Cart/paying_page.dart';
+import 'package:yokubo/pages/Cart/checkout_page.dart';
 import 'cart_page_controller.dart';
 
 class CartTotal extends StatelessWidget {
@@ -9,42 +9,44 @@ class CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return controller.productsmap.isNotEmpty?
-
-
-    SizedBox(
+    if (controller.productsmap.isNotEmpty) {
+      return Container(
       width: 50,
-      //padding: const EdgeInsets.symmetric(horizontal: 45),
+      color: Colors.white,
+
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(
-            "Total:  ${controller.total}",
-            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 22,color: Color(0xff2c3e50),),
+          SizedBox(
+            width: 200,
+            child: Center(
+              child: Text(
+                "Total:  \$${controller.total}",
+                style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 22,color: Color(0xff2c3e50),),
+              ),
+            ),
           ),
           InkWell(
-            onTap: (){()=>Get.to(const ToPay());
-            controller.productsmap.clear();},
+            onTap: (){
+              Get.to(()=>const CheckoutPage());
+            controller.productsmap.clear();
+            },
             child: Container(
               height: 50,
               width: 160,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                  color: Color(0xff2c3e50),
+                  color: const Color(0xff2c3e50),
               ),
-              child: Center(child: Text("Checkout",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),),),
+              child: const Center(child: Text("Checkout",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),),),
             ),
           )
         ],
       ),
-    )
-
-
-        :
-
-
-    Container(
+    );
+    } else {
+      return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(25)),
         color: Colors.white,
@@ -79,5 +81,6 @@ class CartTotal extends StatelessWidget {
         ],
       ),
     );
+    }
   }
 }

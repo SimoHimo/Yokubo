@@ -155,7 +155,7 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         ),],
                         //color: Colors.black12,
-                        borderRadius: BorderRadius.vertical(
+                        borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(40)),
                       ),
                       child: Row(

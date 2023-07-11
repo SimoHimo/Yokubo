@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_button/sign_button.dart';
 import 'package:get/get.dart';
-import 'package:yokubo/pages/Dashboard/dashboard.dart';
 import 'package:yokubo/pages/Login/my_button.dart';
 import 'package:yokubo/pages/Login/my_textfield.dart';
 
