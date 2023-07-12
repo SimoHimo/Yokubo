@@ -493,7 +493,9 @@ class _HomePageState extends State<HomePage> {
               Positioned(
                 top: height * 23,
                 child: Container(
-                    height: height * 100,
+                    //color: Colors.red,
+
+                    height: height * 50,
                     width: width * 100,
                     //color: Colors.yellow,
                     padding: EdgeInsets.fromLTRB(
@@ -502,12 +504,9 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                             height: height * 45,
                             width: width * 75,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
                             child: FloatingSearchBar(
                               clearQueryOnClose: true,
                               iconColor: Colors.black45,
