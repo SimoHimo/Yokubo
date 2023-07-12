@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   const Text("   Don't Have an Account?"),
                   TextButton(
                       onPressed: () {
-                        Get.to(() => const SignUpPage());
+                        Get.to(() => const SignUpPage(),transition: Transition.rightToLeftWithFade);
                       },
                       child: const Text("Sign Up Now"))
                 ],

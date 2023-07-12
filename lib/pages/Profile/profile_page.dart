@@ -19,14 +19,14 @@ class _ProfilePageState extends State<ProfilePage> {
   List<String> profileitems = [
     "About",
     "Settings",
-    "Help",
-    "billing Details",
+    "Info",
+    "Billing Details",
     "Logout"
   ];
 
   List<IconData> profileicons = [
     FontAwesomeIcons.addressCard,
-    FontAwesomeIcons.gears,
+    FontAwesomeIcons.gear,
     FontAwesomeIcons.info,
     FontAwesomeIcons.wallet,
     FontAwesomeIcons.rightFromBracket
@@ -59,12 +59,12 @@ class _ProfilePageState extends State<ProfilePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/profilepicture.jpg"),
+              backgroundImage: AssetImage("assets/images/sherlock.jpg"),
                 radius: 50,),
             const Padding(
               padding: EdgeInsets.only(top: 25),
               child: Text(
-                "Mishkatul Haque",
+                "Sherlock Holmes",
                 style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
@@ -72,42 +72,31 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: ListView.builder(
                   itemCount: profileitems.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: buttonsfunction[index],
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          padding: const EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            //border: Border.all(color: black, width: 5),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.05),
-                                blurRadius: 10.0, // soften the shadow
-                                spreadRadius: 5.0, //extend the shadow
-                                offset: const Offset(
-                                  5.0, // Move to right 10  horizontally
-                                  5.0, // Move to bottom 10 Vertically
-                                ),
-                              )
-                            ],
-                          ),
-                          height: 70,
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 70,
+                        child: InkWell(
+                          onTap: buttonsfunction[index],
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 45),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+                                CircleAvatar(child: Icon(profileicons[index]),
+                                backgroundColor: Color(0x202c3e50),
+                                  radius: 22,
+
+                                ),
                                 Expanded(
-                                  child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 20),
                                     child: Text(
                                       profileitems[index],
                                       style: const TextStyle(
@@ -117,7 +106,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-                                Icon(profileicons[index])
+                                CircleAvatar(child: Icon(FontAwesomeIcons.chevronRight),
+                                  backgroundColor: Color(0x152c3e50),
+                                  radius: 18,)
+
                               ],
                             ),
                           ),

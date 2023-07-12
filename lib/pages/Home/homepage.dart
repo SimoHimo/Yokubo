@@ -109,9 +109,9 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: darkWhite,
           child: ListView(
             children: [
-              Container(
+              const SizedBox(
                 height: 250,
-                child: Image(image: AssetImage("assets/images/bglesslogo.png")),
+                child: Image(image: AssetImage("assets/images/FullLogo.png")),
               ),
               Padding(
                 padding: const EdgeInsets.only(top:50,left: 30),
@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                                           onPressed: () {
                                             Get.to(() => const ProfilePage());
                                           },
-                                          child: const Text("profile"),
+                                          child: const Text("Profile"),
                                         ),
                                       ),
                                       PopupMenuItem(
@@ -601,8 +601,8 @@ class _HomePageState extends State<HomePage> {
                               icon: FaIcon(FontAwesomeIcons.sliders,
                                   color: Colors.white, size: height * 2.8),
                               itemBuilder: (context)=> [
-                                PopupMenuItem(child: Text("Name"),onTap: setTitleSearch(true),),
-                                PopupMenuItem(child: Text("Category"),onTap: setTitleSearch(false),),
+                                PopupMenuItem(onTap: setTitleSearch(true),child: const Text("Name"),),
+                                PopupMenuItem(onTap: setTitleSearch(false),child: const Text("Category"),),
                               ],
                             )
                           ),

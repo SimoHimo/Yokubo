@@ -48,6 +48,7 @@ dependencies:
   sign_button: ^2.0.4
   font_awesome_flutter: ^10.4.0
   google_fonts: ^4.0.4
+  double_back_to_close: ^2.0.0
 
   #Firebase
   cloud_firestore: ^4.8.2

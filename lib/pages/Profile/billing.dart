@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class BillingPage extends StatelessWidget {
   BillingPage({super.key});
   final List<String>billingItems = [
-    "Name:Sherlock Holmes",
+    "Name:  Sherlock Holmes",
     "Address: 22b baker Street",
     "city: London",
     "Email: Sherlocked@gmail.com",
@@ -29,7 +29,7 @@ class BillingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/profilepicture.jpg"),
+              backgroundImage: AssetImage("assets/images/sherlock.jpg"),
               radius: 50,),
             const Padding(
               padding: EdgeInsets.only(top: 25),

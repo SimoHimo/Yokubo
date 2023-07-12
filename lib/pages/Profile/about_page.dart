@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class AboutPage extends StatelessWidget {
   AboutPage({super.key});
   final List<String>aboutItems = [
-    "Name:Syed Mishkatul Haque",
-    "Birthday:13/3/2001",
-    "Gender:male",
-    "Email:xSimohimoX@gmail.com",
-    "Mobile:017XXXXXXXX",
+    "Name:  Sherlock Holmes",
+    "Birthday:  13/3/2001",
+    "Gender:  Male",
+    "Email: Sherlocked@gmail.com",
+    "Mobile: +44 20XXXXXXXX",
   ];
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class AboutPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/profilepicture.jpg"),
+              backgroundImage: AssetImage("assets/images/sherlock.jpg"),
               radius: 50,),
             const Padding(
               padding: EdgeInsets.only(top: 25),

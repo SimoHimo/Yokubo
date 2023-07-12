@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_button/sign_button.dart';
 import 'package:get/get.dart';
+import 'package:yokubo/pages/Auth/auth_page.dart';
 import 'package:yokubo/pages/Login/my_button.dart';
 import 'package:yokubo/pages/Login/my_textfield.dart';
 
@@ -18,9 +19,12 @@ class _SignUpPageState extends State<SignUpPage> {
   final confirmController = TextEditingController();
 
   Future signUserUp() async {
-    if(passwordController.text.trim()==confirmController.text.trim()){
+    if(
+    passwordController.text.trim()==confirmController.text.trim()){
+      Get.snackbar("Welcome to Yokubo", "Make yourself at home!");
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
+
     }
     else{
       Get.snackbar("Try again", "password Didn't match");
@@ -31,7 +35,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     var height = (MediaQuery.of(context).size.height) / 100;
-    //var width = (MediaQuery.of(context).size.width) / 100;
     return Scaffold(
         body: SafeArea(
       top: true,
@@ -57,7 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  "Let's start our journey togather!",
+                  "Let's start our journey together!",
                   style: TextStyle(fontSize: 17, color: Colors.black54),
                 )),
             MyTextField(
@@ -82,9 +85,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   buttonName: "Sign Up",
                   onTap: (){
                     signUserUp();
-
-                    // Get.snackbar(
-                    //     "Sign Up Successful", "Welcome To Yokubo,Your desire");
+                    Future.delayed(const Duration(seconds: 1)
+                      ,(){
+                          Get.to(()=>const AuthPage(),transition: Transition.rightToLeftWithFade);
+                        }
+                    );
                   }),
             ),
             const SizedBox(
