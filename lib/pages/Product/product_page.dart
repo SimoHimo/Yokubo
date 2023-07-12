@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:yokubo/pages/Cart/cart_page.dart';
 import 'package:yokubo/pages/Cart/cart_page_controller.dart';
 import 'package:yokubo/pages/Home/model_class.dart';
+
+import '../Cart/buy_now_page.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({
@@ -74,7 +75,8 @@ class _ProductPageState extends State<ProductPage> {
                         right: 3 * percentWidth,
                         child: IconButton(
                             onPressed: () {
-                              Get.to(()=> CartPage());
+                              cartController.addProduct(product);
+                              Get.to(()=> BuyNowPage());
                             },
                             icon: FaIcon(
                               FontAwesomeIcons.bagShopping,
@@ -238,41 +240,6 @@ class _ProductPageState extends State<ProductPage> {
                               }, child: const Text("Add To Cart"))
 
 
-                              // Row(
-                              //   children: <Widget>[
-                              //
-                              //     CircleAvatar(
-                              //
-                              //       backgroundColor: black,
-                              //
-                              //       child: IconButton(onPressed: (){counter > 0
-                              //           ? counter.value--
-                              //           : null;}, icon: const Icon(Icons.remove,color: Colors.white,),),
-                              //     ),
-                              //     SizedBox(
-                              //         width: 10 * PercentWidth,
-                              //         child: Center(
-                              //             child: Obx(
-                              //                   () => Text(
-                              //                 "$counter",
-                              //                 style: TextStyle(
-                              //                     fontSize: 20,
-                              //                     color: black),
-                              //               ),
-                              //             ))),
-                              //     CircleAvatar(
-                              //
-                              //
-                              //       backgroundColor: black,
-                              //
-                              //       child: IconButton(onPressed: (){counter <99
-                              //           ? counter.value++
-                              //           : null;}, icon: const Icon(Icons.add,color: Colors.white,),),
-                              //     ),
-                              //   ],
-                              // ),
-
-
                             ],
                           )
                         ],
@@ -283,7 +250,6 @@ class _ProductPageState extends State<ProductPage> {
                       height: 20 * percentHeight,
                       padding:
                       EdgeInsets.symmetric(horizontal: 5 * percentWidth),
-                      //color: Colors.blue,
                       child: Row(
                         mainAxisAlignment:
                         MainAxisAlignment.spaceBetween,
@@ -342,6 +308,17 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
 
+
+
+
+
+
+
+
+
+
+
+
                           //Colors
                           Container(
                               height: 18 * percentHeight,
@@ -363,14 +340,15 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                               child: Column(
                                 children: [
-                                  for (ItemColor item
-                                  in ItemColor.values)
+                                  for (ItemColor item in ItemColor.values)
+
+
+
+
                                     ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: item.color,
                                         shape: const CircleBorder(),
-                                        fixedSize: Size(
-                                            8 * percentWidth, 8 * percentWidth),
                                       ),
                                       onPressed: () {
                                         setState(() {
@@ -379,14 +357,35 @@ class _ProductPageState extends State<ProductPage> {
                                       },
                                       child: selectedItem == item
                                           ? const Icon(
-                                        Icons.check, color: Colors.white,)
+                                        FontAwesomeIcons.check, color: Colors.white,)
                                           : null,
                                     ),
+
                                 ],
                               ))
                         ],
                       ),
                     ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     Container(
                       width: 100 * percentWidth,
                       height: 15 * percentHeight,
