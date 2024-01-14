@@ -47,7 +47,7 @@ dependencies:
   custom_radio_grouped_button: ^2.2.0
   sign_button: ^2.0.4
   font_awesome_flutter: ^10.4.0
-  google_fonts: ^4.0.4
+  google_fonts: ^6.1.0
   double_back_to_close: ^2.0.0
 
   #Firebase
@@ -55,6 +55,7 @@ dependencies:
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
   cool_dropdown: ^2.1.0
+  fluttertoast: ^8.2.4
 
 
 
@@ -67,7 +68,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

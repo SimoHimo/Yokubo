@@ -10,10 +10,10 @@ import 'package:yokubo/pages/Home/model_class.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yokubo/pages/Product/product_page.dart';
 import 'package:http/http.dart' as http;
-import 'package:yokubo/pages/Profile/about_page.dart';
 import 'package:yokubo/pages/Profile/profile_page.dart';
-import 'package:yokubo/pages/Profile/settings_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import '../Profile/OtherPages/about_page.dart';
+import '../Profile/OtherPages/settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sign_button/sign_button.dart';
 import 'package:get/get.dart';
 import 'package:yokubo/pages/Login/my_button.dart';
@@ -18,6 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   void signUserIn() async {
+    Fluttertoast.showToast(msg: "Signing in",
+    );
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text, password: passwordController.text);
   }
@@ -34,8 +37,8 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 120,
+             SizedBox(
+              height: height*10,
             ),
             SizedBox(
               height: height * 18,
@@ -52,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(10),
                 child: const Text(
                   'Welcome back, we were missing you!',
-                  style: TextStyle(fontSize: 17, color: Colors.black54),
+                  style: TextStyle(fontSize: 15, color: Colors.black54),
                 )),
             MyTextField(
               hintText: 'Enter Username',
@@ -66,9 +69,10 @@ class _LoginPageState extends State<LoginPage> {
                 controller: passwordController,
                 labelText: "Password"),
             TextButton(onPressed: () {}, child: const Text('Forgot Password?')),
-            Mybutton(buttonName: "Sign In",onTap: signUserIn),
-            const SizedBox(
-              height: 80,
+            Mybutton(buttonName: "Sign In",onTap:
+              signUserIn),
+            SizedBox(
+              height: height*5,
             ),
             SignInButton(
                 buttonType: ButtonType.google,

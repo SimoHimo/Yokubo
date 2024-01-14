@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:yokubo/pages/Auth/auth_page.dart';
 import 'package:yokubo/pages/Login/my_button.dart';
 import 'package:yokubo/pages/Login/my_textfield.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -84,12 +85,15 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Mybutton(
                   buttonName: "Sign Up",
                   onTap: (){
+                    Fluttertoast.showToast(msg: "Signing up!");
                     signUserUp();
                     Future.delayed(const Duration(seconds: 1)
                       ,(){
                           Get.to(()=>const AuthPage(),transition: Transition.rightToLeftWithFade);
                         }
                     );
+                    Fluttertoast.showToast(msg: "Signed up!");
+                    //Flutter Toast
                   }),
             ),
             const SizedBox(

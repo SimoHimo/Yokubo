@@ -2,11 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:yokubo/pages/Profile/billing.dart';
-import 'package:yokubo/pages/Profile/settings_page.dart';
-import 'package:yokubo/pages/Profile/help_page.dart';
-
-import 'about_page.dart';
+import 'package:yokubo/pages/Profile/OtherPages/billing_details_page.dart';
+import 'package:yokubo/pages/Profile/OtherPages/settings_page.dart';
+import 'package:yokubo/pages/Profile/OtherPages/info_page.dart';
+import 'package:yokubo/pages/Profile/OtherPages/about_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -16,7 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  List<String> profileitems = [
+  List<String> profileItems = [
     "About",
     "Settings",
     "Info",
@@ -24,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
     "Logout"
   ];
 
-  List<IconData> profileicons = [
+  List<IconData> profileIcons = [
     FontAwesomeIcons.addressCard,
     FontAwesomeIcons.gear,
     FontAwesomeIcons.info,
@@ -32,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
     FontAwesomeIcons.rightFromBracket
   ];
 
-  List buttonsfunction = [
+  List buttonsFunction = [
     () {Get.to(()=> AboutPage(),transition: Transition.leftToRightWithFade);},
     () {Get.to(()=>const SettingsPage(),transition: Transition.leftToRightWithFade);},
     () {Get.to(()=>const HelpPage(),transition: Transition.leftToRightWithFade);},
@@ -74,31 +73,30 @@ class _ProfilePageState extends State<ProfilePage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: ListView.builder(
-                  itemCount: profileitems.length,
+                  itemCount: profileItems.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 70,
                         child: InkWell(
-                          onTap: buttonsfunction[index],
+                          onTap: buttonsFunction[index],
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 45),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                CircleAvatar(child: Icon(profileicons[index]),
-                                backgroundColor: Color(0x202c3e50),
-                                  radius: 22,
+                                CircleAvatar(backgroundColor: const Color(0x202c3e50),
+                                  radius: 22,child: Icon(profileIcons[index]),
 
                                 ),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      profileitems[index],
+                                      profileItems[index],
                                       style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
@@ -106,9 +104,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-                                CircleAvatar(child: Icon(FontAwesomeIcons.chevronRight),
-                                  backgroundColor: Color(0x152c3e50),
-                                  radius: 18,)
+                                const CircleAvatar(backgroundColor: Color(0x152c3e50),
+                                  radius: 18,child: Icon(FontAwesomeIcons.chevronRight),)
 
                               ],
                             ),
